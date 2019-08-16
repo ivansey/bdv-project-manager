@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+@import "style/Colors";
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  transition: all .3s;
+  outline: none;
+}
+
+a, a:focus, a:hover {
+  color: inherit;
+}
+
+input {
+  border: 1px solid $borderGray;
+  border-radius: 10px;
+  padding: 5px 5px;
+  position: relative;
+}
+
+button, .button {
+  background: $accentColor;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  padding: 5px;
+  font-size: 1em;
+  text-decoration: none;
+  text-align: center;
+
+  &:hover, &:focus {
+    background: $accentColorLight;
+    color: #fff;
+  }
+}
+
+textarea {
+  border: 1px solid $borderGray;
+  border-radius: 10px;
+  padding: 5px 5px;
+}
+
+@import 'style/components/Header';
+@import 'style/components/Quote';
+@import 'style/components/Form';
+@import 'style/components/PanelContent.scss';
+
+@import 'style/Pages';

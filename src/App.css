@@ -1,33 +1,250 @@
-.App {
+@import url("https://fonts.googleapis.com/css?family=Pacifico&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  transition: all 0.3s;
+  outline: none;
+}
+
+a, a:focus, a:hover {
+  color: inherit;
+}
+
+input {
+  border: 1px solid #7A7A7A;
+  border-radius: 10px;
+  padding: 5px 5px;
+  position: relative;
+}
+
+button, .button {
+  background: #6CE200;
+  border: 0;
+  border-radius: 10px;
+  color: #fff;
+  padding: 5px;
+  font-size: 1em;
+  text-decoration: none;
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+button:hover, button:focus, .button:hover, .button:focus {
+  background: #8EFF79;
+  color: #fff;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+textarea {
+  border: 1px solid #7A7A7A;
+  border-radius: 10px;
+  padding: 5px 5px;
+}
+
+.header {
+  background: url("/backgroundHeader.jpg");
+  color: #fff;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  text-shadow: #000 2px 2px 2px;
+}
+.header .text {
+  margin-top: 100px;
+  margin-bottom: 120px;
+}
+.header .text h1, .header .text h2 {
+  font-family: "Pacifico", cursive;
+  font-weight: normal;
+}
+.header .menu {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.header .menu.border {
+  border-bottom: 5px solid #6CE200;
+}
+.header .menu a {
+  text-decoration: none;
+  padding: 5px 10px;
+}
+.header .menu a:hover {
+  background: #6CE200;
+  text-shadow: #000 0 0;
+}
+.header .menu a.top {
+  animation: top 1s infinite ease-in-out;
+  text-shadow: #000 0 0;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes top {
   from {
-    transform: rotate(0deg);
+    background: #6CE200;
+  }
+  50% {
+    background: #8EFF79;
   }
   to {
-    transform: rotate(360deg);
+    background: #6CE200;
   }
 }
+@keyframes topBorder {
+  from {
+    border-bottom: 5px solid #6CE200;
+  }
+  50% {
+    border-bottom: 5px solid #8EFF79;
+  }
+  to {
+    border-bottom: 5px solid #6CE200;
+  }
+}
+@media (max-width: 800px) {
+  .header .text {
+    margin-top: 60px;
+    margin-bottom: 20px;
+  }
+}
+.quote {
+  text-align: center;
+  width: 100%;
+  margin-top: 40px;
+  padding-bottom: 25px;
+  display: flex;
+  justify-content: center;
+}
+.quote .text {
+  width: 60%;
+}
+
+.slick-track {
+  border-bottom: 1px solid #7A7A7A;
+}
+
+@media (max-width: 800px) {
+  .quote {
+    padding-bottom: 15px;
+  }
+  .quote .text {
+    width: 90%;
+  }
+}
+form.border {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #7A7A7A;
+  border-radius: 10px;
+  width: 400px;
+}
+form.border label {
+  width: 100%;
+  margin-bottom: 5px;
+}
+form.border input {
+  width: 100%;
+}
+form.border .buttons * {
+  position: relative;
+  float: right;
+}
+form.border.error {
+  border-color: #ff0000;
+  background: rgba(255, 0, 0, 0.5);
+}
+
+@media (max-width: 500px) {
+  form.border {
+    border: 0;
+    border-radius: 0;
+    width: 90%;
+  }
+}
+.panelContent {
+  width: 80%;
+  border: 1px solid #7A7A7A;
+  border-radius: 10px;
+  padding: 20px;
+}
+.panelContent img {
+  width: 100%;
+  position: relative;
+  border-radius: 10px;
+}
+.panelContent .title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.panelContent .desc {
+  margin-bottom: 10px;
+}
+
+.page {
+  margin-top: 70px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page .title {
+  margin-bottom: 30px;
+}
+.page .contentPage {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.page .contentPage.news {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 90%;
+}
+.page .contentPage.news .title {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.page .contentPage.news img {
+  border-radius: 10px;
+}
+.page .contentPage.news .likes {
+  margin-top: 10px;
+}
+.page .contentPage.news .comments {
+  padding: 20px;
+  width: 100%;
+}
+.page .contentPage.news .comments .comment {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #7A7A7A;
+  border-radius: 10px;
+  padding: 20px;
+  width: calc(100% - 80px);
+}
+.page .contentPage.news .comments .comment .title {
+  margin-bottom: 10px;
+  margin-top: 0;
+  font-weight: bold;
+}
+.page .contentPage.news .addComment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.page .contentPage.news .addComment * {
+  width: 100%;
+}
+.page .contentPage.news .addComment button {
+  margin-top: 10px;
+}
+
+/*# sourceMappingURL=App.css.map */

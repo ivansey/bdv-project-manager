@@ -1,0 +1,296 @@
+let express = require('express');
+let bodyParser = require('body-parser');
+let mongoose = require('mongoose');
+let md5 = require('md5');
+let cors = require('cors');
+let fileUpload = require('express-fileupload');
+
+const PORT = 3001;
+
+mongoose.connect("mongodb://localhost/bdv");
+
+let usersModel = require('./models/users');
+let userSessionModel = require('./models/userSession');
+let newsModel = require('./models/news');
+let newsLikesModel = require('./models/newsLikes');
+let newsCommentsModel = require('./models/newsCommets');
+let projectsModel = require('./models/projects');
+
+let app = express();
+
+app.use(bodyParser());
+app.use(cors());
+app.use(fileUpload());
+
+app.post("/api/v1/users/reg", (req, res) => {
+    usersModel.find({email: req.body.email}).then(data => {
+            if (data.length > 0) {
+                res.json({response: "EMAIL_NOT_FREE"});
+            } else {
+                let user = new usersModel({
+                    email: req.body.email,
+                    pass: md5(req.body.pass),
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    type: "user",
+                    balance: 10000
+                });
+                user.save();
+                res.json({response: "USER_ADD"});
+            }
+        }
+    );
+});
+
+app.post("/api/v1/users/login", (req, res) => {
+    usersModel.find({email: req.body.email}).then(data => {
+        if (data.length === 0) {
+            res.json({response: "NOT_USER", token: null});
+        } else {
+            if (data[0].pass !== md5(req.body.pass)) {
+                res.json({response: "INVALID_PASSWORD", token: null});
+            }
+
+            let session = new userSessionModel({idUser: data[0]._id});
+
+            let token = session.generateToken();
+            session.token = token;
+
+            session.save();
+            res.json({response: "USER_LOGIN", token: token});
+        }
+    })
+});
+
+app.post("/api/v1/users/checkToken", (req, res) => {
+    userSessionModel.find({token: req.body.token}).then(data => {
+        if (data.length === 0) {
+            res.json({response: "NOT_TOKEN", id: null});
+        }
+
+        res.json({response: "CHECK_TOKEN_DONE", id: data[0].idUser});
+    });
+});
+
+app.post("/api/v1/users/get", (req, res) => {
+    usersModel.find({_id: req.body.idUser}).limit(1).then(data => {
+        if (data.length === 0) {
+            res.json({response: "NOT_USER", data: {}});
+        } else {
+            res.json({
+                response: "USER_FOUND", data: data[0]
+            });
+        }
+    });
+});
+
+app.post("/api/v1/users/addMoney", (req, res) => {
+    usersModel.find({_id: req.body.id}).then(data => {
+        usersModel.findByIdAndUpdate(req.body.id, {balance: data[0].balance + req.body.value});
+        res.json({response: "DONE"});
+    });
+});
+
+app.post("/api/v1/users/delMoney", (req, res) => {
+    usersModel.find({_id: req.body.id}).then(data => {
+        usersModel.findByIdAndUpdate(req.body.id, {balance: data[0].balance + req.body.value});
+        res.json({response: "DONE"});
+    });
+});
+
+app.post("/api/v1/news/add", (req, res) => {
+    userSessionModel.find({token: req.body.token}).limit(1).then(data => {
+        if (data.length === 0) {
+            res.json({response: "ACCESS_DENIED"});
+        }
+
+        usersModel.find({_id: data[0].idUser}).limit(1).then(data => {
+            if (data[0].type !== "admin") {
+                res.json({response: "ACCESS_DENIED"});
+            }
+
+            let date = new Date();
+
+            let news = new newsModel({
+                title: req.body.title,
+                img: req.body.img,
+                text: req.body.text,
+                desc: req.body.desc,
+                time: date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+            });
+            news.save();
+            console.log(req.body);
+            res.json({response: "NEWS_ADD"});
+        });
+    });
+});
+
+app.post("/api/v1/news/list", (req, res) => {
+    newsModel.find({}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+        if (data.length === 0) {
+            res.json({response: "NOT_NEWS", data: {}});
+        } else {
+            res.json({response: "NEWS_FOUND", data: data});
+        }
+    });
+});
+
+app.post("/api/v1/news/get", (req, res) => {
+    newsModel.find({_id: req.body.id}).limit(1).then(data => {
+        if (data.length === 0) {
+            res.json({response: "NOT_NEWS", data: {}});
+        } else {
+            res.json({response: "NEWS_FOUND", data: data});
+        }
+    });
+});
+
+app.post("/api/v1/news/delete", (req, res) => {
+    userSessionModel.find({token: req.body.token}).limit(1).then(data => {
+        if (data.length === 0) {
+            res.json({response: "ACCESS_DENIED"});
+        }
+        usersModel.find({_id: data[0].idUser}).limit(1).then(data => {
+            if (data[0].type !== "admin") {
+                res.json({response: "ACCESS_DENIED"});
+            }
+
+            newsModel.findByIdAndRemove(req.body.id).then(data => {
+                res.json({response: "NEWS_DELETED", data: data});
+            });
+        });
+    });
+});
+
+app.post("/api/v1/news/getLikes", (req, res) => {
+    newsLikesModel.find({idNews: req.body.id}).then(data => {
+        res.json({response: "DONE", data: data.length});
+    });
+});
+
+app.post("/api/v1/news/addLike", (req, res) => {
+    userSessionModel.find({token: req.body.token}).limit(1).then(data => {
+        if (data.length === 0) {
+            res.json({response: "ACCESS_DENIED"});
+        }
+
+        let like = new newsLikesModel({
+            idNews: req.body.id,
+            idUser: req.body.idUser
+        });
+
+        newsLikesModel.find({idNews: req.body.id, idUser: req.body.idUser}).then(data => {
+            if (data.length === 0) {
+                like.save();
+                res.json({response: "ADD_LIKE"});
+            }
+        });
+    });
+});
+
+app.post("/api/v1/news/getComments", (req, res) => {
+    newsCommentsModel.find({idNews: req.body.id}).then(data => {
+        if (data.length === 0) {
+            res.json({response: "NOT_COMMENTS", data: []});
+        }
+
+        res.json({response: "DONE", data: data});
+    });
+});
+
+app.post("/api/v1/news/addComment", (req, res) => {
+    userSessionModel.find({token: req.body.token}).limit(1).then(data => {
+        if (data.length === 0) {
+            res.json({response: "ACCESS_DENIED"});
+        }
+
+        usersModel.find({_id: req.body.idUser}).limit(1).then(data => {
+            console.log(data);
+            let comment = new newsCommentsModel({
+                idNews: req.body.id,
+                idUser: req.body.idUser,
+                text: req.body.text,
+                firstName: data[0].firstName
+            });
+
+            comment.save();
+            res.json({response: "ADD_COMMENT"});
+        });
+    });
+});
+
+app.post("/api/v1/storage/img/upload", (req, res) => {
+    let imageFile = req.files.file;
+
+    let date = Date();
+
+    imageFile.mv(`../public/storage/img/${md5(date + req.body.idUser)}.jpg`, err => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send(err);
+        }
+
+        res.json({file: `/storage/img/${md5(date + req.body.idUser)}.jpg`});
+    })
+});
+
+app.post("/api/v1/projects/add", (req, res) => {
+    userSessionModel.find({token: req.body.token}).limit(1).then(data => {
+        if (data.length === 0) {
+            res.json({response: "ACCESS_DENIED"});
+        }
+
+        usersModel.find({_id: req.body.idUser}).then(data2 => {
+            if (data2[0].balance < 1500) {
+                res.json({response: "NOT_MONEY"});
+                return
+            }
+            usersModel.findByIdAndUpdate(req.body.idUser, {balance: data2[0].balance - req.body.value}).then(data3 => {
+                console.log(data3);
+            });
+            res.json({response: "DONE"});
+        });
+
+        let date = new Date();
+
+        let project = new projectsModel({
+            title: req.body.title,
+            category: req.body.category,
+            img: req.body.img,
+            text: req.body.text,
+            desc: req.body.desc,
+            textPlus: req.body.textPlus,
+            time: date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
+            active: false,
+            phone: req.body.phone,
+            email: req.body.email,
+            idUser: req.body.idUser
+        });
+        project.save();
+    });
+    res.json({response: "PROJECT_ADD"});
+});
+
+app.post("/api/v1/projects/list", (req, res) => {
+    projectsModel.find({category: req.body.category}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+        if (data.length === 0) {
+            res.json({response: "NOT_PROJECTS", data: {}});
+        } else {
+            res.json({response: "PROJECTS_FOUND", data: data});
+        }
+    });
+});
+
+app.post("/api/v1/projects/get", (req, res) => {
+    projectsModel.find({_id: req.body.id}).limit(1).then(data => {
+        if (data.length === 0) {
+            res.json({response: "NOT_PROJECTS", data: {}});
+        } else {
+            console.log(data);
+            res.json({response: "PROJECT_FOUND", data: data[0]});
+        }
+    });
+});
+
+
+app.listen(PORT, () => console.log("Server started on port " + PORT));

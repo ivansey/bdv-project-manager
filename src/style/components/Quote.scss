@@ -1,0 +1,26 @@
+.quote {
+  text-align: center;
+  width: 100%;
+  margin-top: 40px;
+  padding-bottom: 25px;
+  display: flex;
+  justify-content: center;
+
+  & .text {
+    width: 60%;
+  }
+}
+
+.slick-track {
+  border-bottom: 1px solid $borderGray;
+}
+
+@media (max-width: 800px) {
+  .quote {
+    padding-bottom: 15px;
+
+    & .text {
+      width: 90%;
+    }
+  }
+}

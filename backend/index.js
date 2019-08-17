@@ -10,12 +10,12 @@ let smtp;
 
 try {
     smtp = nodemailer.createTransport({
-        host: process.env.EMAIL_HOST,
+        host: 'smtp.yandex.ru',
         port: 465,
         secure: true,
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
+            user: 'ivansey26@yandex.ru',
+            pass: '20021212Qq'
         }
     });
 } catch (e) {

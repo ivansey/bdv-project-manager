@@ -7,7 +7,8 @@ let usersSchema = new mongoose.Schema ({
     firstName: String,
     lastName: String,
     type: String,
-    balance: Number
+    balance: Number,
+    active: Boolean
 });
 
 usersSchema.method("getFullName", () => { return this.firtsName + " " + this.lastName });

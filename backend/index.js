@@ -4,6 +4,23 @@ let mongoose = require('mongoose');
 let md5 = require('md5');
 let cors = require('cors');
 let fileUpload = require('express-fileupload');
+let nodemailer = require('nodemailer');
+
+let smtp;
+
+try {
+    smtp = nodemailer.createTransport({
+        host: process.env.EMAIL_HOST,
+        port: 465,
+        secure: true,
+        auth: {
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS
+        }
+    });
+} catch (e) {
+    console.error(e);
+}
 
 const PORT = 3001;
 
@@ -33,9 +50,26 @@ app.post("/api/v1/users/reg", (req, res) => {
                     firstName: req.body.firstName,
                     lastName: req.body.lastName,
                     type: "user",
-                    balance: 10000
+                    balance: 10000,
+                    active: false
                 });
                 user.save();
+                let output = `<h1>BDV</h1>
+                    <h2>Бизнес Делая Вместе</h2>
+                    <h3>Подверждение регистрации</h3>
+                    <a href="http://ivansey.ru:3000/activate/` + user._id + `">http://ivansey.ru:3000/activate/` + user._id + `</a>`;
+                let mailOptions = {
+                    from: 'ivansey26@yandex.ru',
+                    to: req.body.email,
+                    subject: 'BDV - Подверждение регистрации',
+                    text: 'BDV - Подверждение регистрации',
+                    html: output
+                };
+                smtp.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.error(error);
+                    }
+                });
                 res.json({response: "USER_ADD"});
             }
         }
@@ -80,6 +114,16 @@ app.post("/api/v1/users/get", (req, res) => {
             res.json({
                 response: "USER_FOUND", data: data[0]
             });
+        }
+    });
+});
+
+app.post("/api/v1/users/activate", (req, res) => {
+    usersModel.findByIdAndUpdate(req.body.id, {active: true}).then((data) => {
+        if (data.length === 0) {
+            res.send("Этот url поврежден");
+        } else {
+            res.redirect("OK");
         }
     });
 });
@@ -267,6 +311,21 @@ app.post("/api/v1/projects/add", (req, res) => {
             idUser: req.body.idUser
         });
         project.save();
+        let output = `<h1>BDV</h1>
+                    <h2>Бизнес Делая Вместе</h2>
+                    <h3>Проект создан</h3>`
+        let mailOptions = {
+            from: 'ivansey26@yandex.ru',
+            to: req.body.email,
+            subject: 'BDV - Проект создан',
+            text: 'BDV - Проект создан',
+            html: output
+        };
+        smtp.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error(error);
+            }
+        });
     });
     res.json({response: "PROJECT_ADD"});
 });
@@ -290,6 +349,10 @@ app.post("/api/v1/projects/get", (req, res) => {
             res.json({response: "PROJECT_FOUND", data: data[0]});
         }
     });
+});
+
+app.get("/api/v1/setup/google/getUrl", (req, res) => {
+
 });
 
 

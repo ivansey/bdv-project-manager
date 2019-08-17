@@ -14,6 +14,8 @@ import ProjectList from "./pages/Projects/List";
 import ProjectAdd from "./pages/Projects/Add";
 import ProjectGet from "./pages/Projects/Index";
 
+import Activate from "./pages/Activate";
+
 import './App.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -47,6 +49,7 @@ let App = () => {
                 <Route path="/projects" exact component={ProjectList}/>
                 <Route path="/projects/add" exact component={ProjectAdd}/>
                 <Route path="/projects/get/:id" component={ProjectGet}/>
+                <Route path="/activate/:id" component={Activate}/>
             </div>
         </BrowserRouter>
     </div>

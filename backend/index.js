@@ -14,7 +14,7 @@ try {
         port: 465,
         secure: true,
         auth: {
-            user: 'ivansey26@yandex.ru',
+            user: 'root@ivansey.ru',
             pass: '20021212Qq'
         }
     });
@@ -54,12 +54,12 @@ app.post("/api/v1/users/reg", (req, res) => {
                     active: false
                 });
                 user.save();
-                let output = `BDV - Бизнес Делая Вместе\n
-                    Подверждение регистрации\n
-                    Для работы с сервисом необходимо подтвердить, что вы реальный человек. Сделать это можно перейдя по ссылке выше\n
+                let output = `<h1>BDV - Бизнес Делая Вместе</h1>\n
+                    <h2>Подверждение регистрации</h2><br/>\n
+                    <p>Для работы с сервисом необходимо подтвердить, что вы реальный человек. Сделать это можно перейдя по ссылке выше</p><br/>\n
                     <a href="http://ivansey.ru/activate/${user._id}">Активировать аккаунт</a>`
                 let mailOptions = {
-                    from: 'ivansey26@yandex.ru',
+                    from: 'root@ivansey.ru',
                     to: req.body.email,
                     subject: 'BDV - Подверждение регистрации',
                     text: 'BDV - Подверждение регистрации',
@@ -294,39 +294,73 @@ app.post("/api/v1/projects/add", (req, res) => {
             usersModel.findByIdAndUpdate(req.body.idUser, {balance: data2[0].balance - req.body.value}).then(data3 => {
                 console.log(data3);
             });
-            res.json({response: "DONE"});
         });
 
-        let date = new Date();
+        projectsModel.find().then(data => {
+            let date = new Date();
 
-        let project = new projectsModel({
-            title: req.body.title,
-            category: req.body.category,
-            img: req.body.img,
-            text: req.body.text,
-            desc: req.body.desc,
-            textPlus: req.body.textPlus,
-            time: date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
-            active: false,
-            phone: req.body.phone,
-            email: req.body.email,
-            idUser: req.body.idUser
-        });
-        project.save();
-        let output = `<h1>BDV</h1>
-                    <h2>Бизнес Делая Вместе</h2>
-                    <h3>Проект создан</h3>`
-        let mailOptions = {
-            from: 'ivansey26@yandex.ru',
-            to: req.body.email,
-            subject: 'BDV - Проект создан',
-            text: 'BDV - Проект создан',
-            html: output
-        };
-        smtp.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error(error);
-            }
+            let id = data.length + 1;
+
+            let project = new projectsModel({
+                title: req.body.title,
+                category: req.body.category,
+                img: req.body.img,
+                text: req.body.text,
+                desc: req.body.desc,
+                textPlus: req.body.textPlus,
+                time: date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
+                active: true,
+                phone: req.body.phone,
+                email: req.body.email,
+                idUser: req.body.idUser,
+                id: id
+            });
+            project.save();
+
+            // Отправка инструкций
+            let output = `<h1>BDV - Бизнес Делая Вместе</h1>
+                    <h2>Проект создан</h2>
+                    <div>Проект создан</div>
+					<a href="http://ivansey.ru/projects/get/${project._id}">Открыть проект на сайте</a>`
+            let mailOptions = {
+                from: 'root@ivansey.ru',
+                to: req.body.email,
+                subject: 'BDV - Проект создан',
+                text: 'BDV - Проект создан',
+                html: output
+            };
+            smtp.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error(error);
+                }
+            });
+
+            // Отправка данных о проекте
+            output = `<h1>BDV - Бизнес Делая Вместе</h1>
+               		<h2>Уведомление о новом проекте</h2>
+                    <div>Имя: ${project.title}</div><br/>
+                    <div>Номер: ${project.id}</div><br/>
+                    <div>Уникальный индификатор: ${project._id}</div><br/>
+                    <div>Категория: ${project.category}</div><br/>
+                    <div>Краткое описание: <br/>${project.desc}</div><br/>
+					<div>Описание: <br/>${project.text}</div><br/>
+					<div>Дополнительное (предложение или требование): <br/>${project.textPlus}</div><br/>
+					<div>Время создания: ${project.time} по МСК</div><br/>
+					<div>Телефон: ${project.phone}</div><br/>
+					<div>EMail: ${project.email}</div><br/>
+					<a href="http://ivansey.ru/projects/get/${project._id}">Открыть проект</a>`
+            mailOptions = {
+                from: 'root@ivansey.ru',
+                to: 'bdvcool@yandex.ru',
+                subject: `BDV - Уведомление о новом проекте #${project.id}`,
+                text: `BDV - Уведомление о новом проекте #${project.id}`,
+                html: output
+            };
+            smtp.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error(error);
+                }
+            });
         });
     });
     res.json({response: "PROJECT_ADD"});

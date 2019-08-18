@@ -68,6 +68,12 @@ textarea {
 .header .menu.border {
   border-bottom: 5px solid #6CE200;
 }
+.header .menu.red {
+  background: #f00;
+}
+.header .menu.red a:hover {
+  background: #f00;
+}
 .header .menu a {
   text-decoration: none;
   padding: 5px 10px;

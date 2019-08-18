@@ -30,6 +30,14 @@
       border-bottom: 5px solid $accentColor;
     }
 
+    &.red {
+      background: #f00;
+
+      & a:hover {
+        background: #f00;
+      }
+    }
+
     & a {
       text-decoration: none;
       padding: 5px 10px;

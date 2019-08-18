@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import cookie from 'react-cookies';
 import {Link} from "react-router-dom";
-import Icon from '../img/icon.jpg';
 
 class Header extends React.Component {
     constructor(props) {
@@ -39,7 +38,7 @@ class Header extends React.Component {
 
     render() {
         return <div className="header">
-            <div className="menu">
+            <div className={this.state.user.active === false ? "menu red" : "menu"}>
                 {
                     cookie.load('token') === null || cookie.load('token') === undefined
                         ? <Link to="/login">Вход</Link>
@@ -51,18 +50,22 @@ class Header extends React.Component {
                         : null
                 }
                 {
-                    cookie.load('token') !== null && cookie.load('token') !== undefined
+                    cookie.load('token') !== null || cookie.load('token') !== undefined
                         ? <Link to={`/user/${this.state.user.id}`}>{this.state.user.firstName + " " + this.state.user.lastName}</Link>
                         : null
                 }
                 {
-                    cookie.load('token') !== null && cookie.load('token') !== undefined
+                    cookie.load('token') !== null || cookie.load('token') !== undefined
                         ? <Link to={`/user/balance`}>{this.state.user.balance + " RUB"}</Link>
                         : null
                 }
             </div>
+            {
+                this.state.user.active === false && (cookie.load('token') !== null || cookie.load('token') !== undefined)
+                    ? <div className="menu red"><p>Вы не активировали свой аккаунт. Вам было отправлено письмо с ссылкой для активации</p></div>
+                    : null
+            }
             <div className="text">
-                {/*<img src={Icon} alt="BDV Icon" width="200"/>*/}
                 <h1 className="title">BDV</h1>
                 <h2 className="subtitle">Бизнес Действуя Вместе</h2>
             </div>

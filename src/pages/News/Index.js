@@ -170,7 +170,7 @@ class NewsIndex extends React.Component {
                                 : <p>Коментраиев нет</p>
                         }
                         {
-                            cookie.load("token") !== null && cookie.load("token") !== undefined
+                            cookie.load("token") !== null || cookie.load("token") !== undefined || this.state.user.active === false
                                 ? <div className="addComment">
                                     <textarea cols="30" rows="3" onChange={this.handleText}></textarea>
                                     <button onClick={this.addComment}>Добавить</button>

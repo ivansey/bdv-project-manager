@@ -11,7 +11,8 @@ let projectsSchema = new mongoose.Schema ({
     active: Boolean,
     phone: String,
     email: String,
-    idUser: String
+    idUser: String,
+    id: Number
 });
 
 let projectsModel = mongoose.model("projects", projectsSchema);

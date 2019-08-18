@@ -125,9 +125,11 @@ app.post("/api/v1/users/get", (req, res) => {
 
 app.post("/api/v1/users/activate", (req, res) => {
 	usersModel.findByIdAndUpdate(req.body.id, {active: true}).then((data) => {
+		console.log("ccc")
 		if (data.length === 0) {
 			res.send("Этот url поврежден");
 		} else {
+			console.log("eee")
 			res.redirect("OK");
 		}
 	});

@@ -9,7 +9,7 @@ class Activate extends React.Component {
     }
 
     activateUser = () => {
-        axios.post("http://localhost:3001/api/v1/users/activate", {
+        axios.post("/api/v1/users/activate", {
             id: this.props.match.params.id
         });
     }

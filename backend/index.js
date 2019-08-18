@@ -11,8 +11,8 @@ let smtp;
 try {
     smtp = nodemailer.createTransport({
         host: 'smtp.yandex.ru',
-        port: 2525,
-        secure: false,
+        port: 587,
+        secure: true,
         auth: {
             user: 'root@ivansey.ru',
             pass: '20021212Qq'

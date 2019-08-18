@@ -130,7 +130,6 @@ app.post("/api/v1/users/activate", (req, res) => {
 			res.send("Этот url поврежден");
 		} else {
 			console.log("eee")
-			res.redirect("OK");
 		}
 	});
 });

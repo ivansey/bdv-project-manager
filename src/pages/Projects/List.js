@@ -93,7 +93,7 @@ class ProjectList extends React.Component {
                     ? <div className="contentPage">
                         {
                             this.state.projects.map(news => {
-                                return <PanelContent _id={news._id} title={news.title} desc={news.desc} img={news.img} type="projects/get"/>
+                                return <PanelContent active={this.state.user.active} _id={news._id} title={news.title} desc={news.desc} img={news.img} type="projects/get"/>
                             })
                         }
                     </div>

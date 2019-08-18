@@ -11,7 +11,11 @@ class PanelContent extends React.Component {
             }
             <h4 className="title">{this.props.title}</h4>
             <p className="desc">{this.props.desc}</p>
-            <Link to={`/${this.props.type}/${this.props._id}`} className="button" style={{display: 'block'}}>Читать далее...</Link>
+            {
+                !this.props.active && this.props.type === "projects/get"
+                    ? <p>Только зрегистрированные и активированные пользователи могут открывать проекты</p>
+                    : <Link to={`/${this.props.type}/${this.props._id}`} className="button" style={{display: 'block'}}>Читать далее...</Link>
+            }
         </div>
     }
 }

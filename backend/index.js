@@ -54,10 +54,10 @@ app.post("/api/v1/users/reg", (req, res) => {
                     active: false
                 });
                 user.save();
-                let output = `<h1>BDV</h1>
-                    <h2>Бизнес Делая Вместе</h2>
-                    <h3>Подверждение регистрации</h3>
-                    <a href="http://ivansey.ru:3000/activate/` + user._id + `">http://ivansey.ru:3000/activate/` + user._id + `</a>`;
+                let output = `BDV - Бизнес Делая Вместе\n
+                    Подверждение регистрации\n
+                    Для работы с сервисом необходимо подтвердить, что вы реальный человек. Сделать это можно перейдя по ссылке выше\n
+                    <a href="http://ivansey.ru/activate/${user._id}">Активировать аккаунт</a>`
                 let mailOptions = {
                     from: 'ivansey26@yandex.ru',
                     to: req.body.email,
@@ -68,6 +68,8 @@ app.post("/api/v1/users/reg", (req, res) => {
                 smtp.sendMail(mailOptions, (error, info) => {
                     if (error) {
                         console.error(error);
+                    } else {
+                        console.log('send');
                     }
                 });
                 res.json({response: "USER_ADD"});

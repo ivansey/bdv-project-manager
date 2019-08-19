@@ -13,6 +13,10 @@ a, a:focus, a:hover {
   color: inherit;
 }
 
+body {
+  background: $accentColorBackground;
+}
+
 input {
   border: 1px solid $borderGray;
   border-radius: 10px;
@@ -60,5 +64,6 @@ textarea {
 @import 'style/components/Quote';
 @import 'style/components/Form';
 @import 'style/components/PanelContent.scss';
+@import 'style/components/Footer';
 
 @import 'style/Pages';

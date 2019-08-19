@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 
 import Header from "./components/Header";
 import Quote from "./components/Quote";
+import Footer from "./components/Footer";
 
 import Index from "./pages/Index";
 import Reg from "./pages/Reg";
@@ -52,6 +53,7 @@ let App = () => {
                 <Route path="/cases" component={CasesList}/>
                 <Route path="/activate/:id" component={Activate}/>
             </div>
+            <Footer/>
         </BrowserRouter>
     </div>
 };

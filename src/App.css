@@ -196,6 +196,12 @@ form.border.error {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+}
+.page .text {
+  text-align: center;
+  margin-bottom: 60px;
+  width: 80%;
 }
 .page .title {
   margin-bottom: 30px;
@@ -251,6 +257,19 @@ form.border.error {
 }
 .page .contentPage.news .addComment button {
   margin-top: 10px;
+}
+.page .flex.columns {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+.page .flex.columns .column {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 /*# sourceMappingURL=App.css.map */

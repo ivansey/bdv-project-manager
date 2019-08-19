@@ -4,6 +4,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
+
+  & .text {
+    text-align: center;
+    margin-bottom: 60px;
+    width: 80%;
+  }
 
   & .title {
     margin-bottom: 30px;
@@ -69,6 +76,21 @@
           margin-top: 10px;
         }
       }
+    }
+  }
+
+  & .flex.columns {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    
+    & .column {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      margin-left: 20px;
+      margin-right: 20px;
     }
   }
 }

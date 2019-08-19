@@ -13,7 +13,7 @@ import NewsIndex from "./pages/News/Index";
 import ProjectList from "./pages/Projects/List";
 import ProjectAdd from "./pages/Projects/Add";
 import ProjectGet from "./pages/Projects/Index";
-
+import CasesList from "./pages/Cart/List";
 import Activate from "./pages/Activate";
 
 import './App.css';
@@ -49,6 +49,7 @@ let App = () => {
                 <Route path="/projects" exact component={ProjectList}/>
                 <Route path="/projects/add" exact component={ProjectAdd}/>
                 <Route path="/projects/get/:id" component={ProjectGet}/>
+                <Route path="/cases" component={CasesList}/>
                 <Route path="/activate/:id" component={Activate}/>
             </div>
         </BrowserRouter>

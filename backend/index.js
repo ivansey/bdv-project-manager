@@ -35,6 +35,7 @@ let newsModel = require('./models/news');
 let newsLikesModel = require('./models/newsLikes');
 let newsCommentsModel = require('./models/newsCommets');
 let projectsModel = require('./models/projects');
+let cartModel = require('./models/cart');
 
 let app = express();
 
@@ -145,6 +146,72 @@ app.post("/api/v1/users/delMoney", (req, res) => {
 	usersModel.find({_id: req.body.id}).then(data => {
 		usersModel.findByIdAndUpdate(req.body.id, {balance: data[0].balance + req.body.value});
 		res.json({response: "DONE"});
+	});
+});
+
+app.post("/api/v1/cart/add", (req, res) => {
+	userSessionModel.find({token: req.body.token}).then(data => {
+		if (data.length === 0) {
+			console.log("ACCESS_DENIED");
+			res.json({response: "ACCESS_DENIED"});
+		}
+		
+		let cart = new cartModel({
+			text: req.body.text,
+			phone: req.body.phone,
+			email: req.body.email,
+			idUser: req.body.idUser,
+			idProject: req.body.idProject
+		});
+		cart.save();
+		
+		// Отправка инструкций
+		let output = `<h1>BDV - Бизнес Делая Вместе</h1>
+                    <h2>Добавлен проект в кейс</h2>
+                    <div>Вы добавили в проект в кейс</div>`
+		let mailOptions = {
+			from: 'root@ivansey.ru',
+			to: req.body.email,
+			subject: 'BDV - Добавлен проект в кейс',
+			text: 'BDV - Добавлен проект в кейс',
+			html: output
+		};
+		smtp.sendMail(mailOptions, (error, info) => {
+			if (error) {
+				console.error(error);
+			}
+		});
+		
+		// Отправка данных о проекте
+		output = `<h1>BDV - Бизнес Делая Вместе</h1>
+               		<h2>Добавлен проект в кейс</h2>
+					<div>Описание: <br/>${cart.text}</div><br/>
+					<div>Телефон: ${cart.phone}</div><br/>
+					<div>EMail: ${cart.email}</div><br/>
+					<a href="http://ivansey.ru/projects/get/${cart.idProject}">Открыть проект</a>`
+		mailOptions = {
+			from: 'root@ivansey.ru',
+			to: 'bdvcool@yandex.ru',
+			subject: `BDV - Добавлен проект в кейс`,
+			text: `BDV - Добавлен проект в кейс`,
+			html: output
+		};
+		smtp.sendMail(mailOptions, (error, info) => {
+			if (error) {
+				console.error(error);
+			}
+		});
+	});
+	res.json({response: "CART_ADD"});
+});
+
+app.post("/api/v1/cart/list", (req, res) => {
+	cartModel.find({}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+		if (data.length === 0) {
+			res.json({response: "NOT_CART", data: {}});
+		} else {
+			res.json({response: "CART_FOUND", data: data});
+		}
 	});
 });
 
@@ -390,10 +457,5 @@ app.post("/api/v1/projects/get", (req, res) => {
 		}
 	});
 });
-
-app.get("/api/v1/setup/google/getUrl", (req, res) => {
-
-});
-
 
 app.listen(PORT, () => console.log("Server started on port " + PORT));

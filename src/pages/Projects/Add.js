@@ -139,7 +139,7 @@ class ProjectAdd extends React.Component {
     turnOffError = () => {
         this.setState({empty: false});
     };
-
+    
     render() {
         return <div className="page" id="newsAdd">
             <h3 className="title">Добавление новости</h3>

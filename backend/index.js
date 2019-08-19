@@ -438,13 +438,23 @@ app.post("/api/v1/projects/add", (req, res) => {
 });
 
 app.post("/api/v1/projects/list", (req, res) => {
-	projectsModel.find({category: req.body.category}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
-		if (data.length === 0) {
-			res.json({response: "NOT_PROJECTS", data: {}});
-		} else {
-			res.json({response: "PROJECTS_FOUND", data: data});
-		}
-	});
+	if (req.body.category === 'all') {
+		projectsModel.find({}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+			if (data.length === 0) {
+				res.json({response: "NOT_PROJECTS", data: {}});
+			} else {
+				res.json({response: "PROJECTS_FOUND", data: data});
+			}
+		});
+	} else {
+		projectsModel.find({category: req.body.category}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+			if (data.length === 0) {
+				res.json({response: "NOT_PROJECTS", data: {}});
+			} else {
+				res.json({response: "PROJECTS_FOUND", data: data});
+			}
+		});
+	}
 });
 
 app.post("/api/v1/projects/get", (req, res) => {

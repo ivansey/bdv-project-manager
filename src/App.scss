@@ -42,6 +42,20 @@ textarea {
   padding: 5px 5px;
 }
 
+.popup-content {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 20px;
+
+  & * {
+    margin: 10px;
+  }
+}
+
 @import 'style/components/Header';
 @import 'style/components/Quote';
 @import 'style/components/Form';

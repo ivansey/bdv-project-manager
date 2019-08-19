@@ -38,7 +38,7 @@ class Header extends React.Component {
 	
 	render() {
 		return <div className="header">
-			<div className={this.state.user.active === false ? "menu red" : "menu"}>
+			<div className="menu">
 				{
 					cookie.load('token') === null || cookie.load('token') === undefined
 						? <Link to="/login">Вход</Link>
@@ -60,11 +60,6 @@ class Header extends React.Component {
 						: null
 				}
 			</div>
-			{
-				this.state.user.active === false && (cookie.load('token') !== null || cookie.load('token') !== undefined)
-					? <div className="menu red"><p>Вы не активировали свой аккаунт. Вам было отправлено письмо с ссылкой для активации</p></div>
-					: null
-			}
 			<div className="text">
 				<h1 className="title">BDV</h1>
 				<h2 className="subtitle">Бизнес Действуя Вместе</h2>

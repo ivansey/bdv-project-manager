@@ -147,7 +147,7 @@ class ProjectAdd extends React.Component {
             {
                 this.state.user.balance >= 1500
                     ? <p>У Вас на счету {this.state.user.balance}</p>
-                    : <p>E вас не достаточно денег на счету (необходимо ещё {1500 - this.state.user.balance})</p>
+                    : <p>У вас не достаточно денег на счету (необходимо ещё {1500 - this.state.user.balance})</p>
             }
             <div className="contentPage">
                 {
@@ -172,6 +172,8 @@ class ProjectAdd extends React.Component {
                                 <option value="hobby">Хобби и отдых</option>
                                 <option value="offer">Предложение готовых продуктов</option>
                                 <option value="building">Cтроительство</option>
+                                <option value="startup">Стартапы</option>
+                                <option value="art">Исскуство</option>
                                 <option value="other">Другое</option>
                             </select>
                             {

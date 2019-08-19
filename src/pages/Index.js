@@ -18,6 +18,7 @@ class Index extends React.Component {
 		this.checkToken = this.checkToken.bind(this);
 		this.getInfo = this.getInfo.bind(this);
 		this.getNews = this.getNews.bind(this);
+		this.addLimit = this.addLimit.bind(this);
 		
 		this.checkToken();
 		this.getNews();
@@ -50,6 +51,11 @@ class Index extends React.Component {
 			this.setState({response: data.data.response, news: data.data.data});
 		});
 	};
+    
+    addLimit = () => {
+        this.setState({limit: this.state.limit + 10});
+        this.getNews();
+    };
 	
 	render() {
 		return <div className="page" id="index">
@@ -94,6 +100,8 @@ class Index extends React.Component {
 					</div>
 					: null
 			}
+            <br/><br/>
+            <button onClick={this.addLimit}>Ещё новости</button>
 		</div>
 	}
 }

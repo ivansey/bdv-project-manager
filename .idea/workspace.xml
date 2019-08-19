@@ -1,13 +1,294 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="Fix bugs">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/style/components/Footer.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/components/Footer.scss" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="bdv" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="SCSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/backend/index.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/backend/models/users.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.gitignore" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/pages/News/Index.js" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="1PQ7DoN0JpA6vkcrNSRG57kwXOW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="C:/Program Files/Git/bin/git.exe" />
+    <property name="add_unversioned_files" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/backend/models" />
+    <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\public" />
+      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\backend" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\backend\models" />
+      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\backend" />
+      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\src\pages\Projects" />
+      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\src\img" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="" />
+      <created>1565794349820</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1565794349820</updated>
+      <workItem from="1565794353793" duration="41450000" />
+      <workItem from="1565903618492" duration="15313000" />
+      <workItem from="1565979772181" duration="4546000" />
+      <workItem from="1565988261586" duration="1523000" />
+      <workItem from="1565997543560" duration="1962000" />
+      <workItem from="1566036358612" duration="9221000" />
+      <workItem from="1566060427099" duration="13133000" />
+      <workItem from="1566144952516" duration="14458000" />
+      <workItem from="1566196423053" duration="7387000" />
+      <workItem from="1566207984514" duration="12860000" />
+      <workItem from="1566245489305" duration="4398000" />
+    </task>
+    <task id="LOCAL-00001" summary="Init repository">
+      <created>1565988959541</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1565988959542</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add EMail messages">
+      <created>1566065729458</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1566065729458</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fix bugs">
+      <created>1566068260003</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1566068260003</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Fix bugs">
+      <created>1566138984279</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1566138984292</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fix bugs">
+      <created>1566150603037</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1566150603037</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fix bugs">
+      <created>1566151982728</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1566151982728</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Change email port">
+      <created>1566152787467</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1566152787467</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Fix bugs">
+      <created>1566153503819</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1566153503819</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fix bugs">
+      <created>1566153517992</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1566153517992</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Change port email">
+      <created>1566164983623</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1566164983671</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Change port email">
+      <created>1566168844181</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1566168844181</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add SSLv3 EMail support">
+      <created>1566169274314</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1566169274314</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fix bugs">
+      <created>1566170010420</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1566170010420</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fix bugs">
+      <created>1566170207265</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1566170207265</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Update">
+      <created>1566172524142</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1566172524142</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add cart">
+      <created>1566209651915</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1566209651915</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Update design">
+      <created>1566211899831</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1566211899831</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Add popup window">
+      <created>1566240680357</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1566240680358</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Restyle">
+      <created>1566253134109</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1566253134109</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fix bugs">
+      <created>1566253374360</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1566253374360</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init repository" />
+    <MESSAGE value="Add EMail messages" />
+    <MESSAGE value="Change email port" />
+    <MESSAGE value="Change port email" />
+    <MESSAGE value="Add SSLv3 EMail support" />
+    <MESSAGE value="Update" />
+    <MESSAGE value="Add cart" />
+    <MESSAGE value="Update design" />
+    <MESSAGE value="Add popup window" />
+    <MESSAGE value="Restyle" />
+    <MESSAGE value="Fix bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bugs" />
   </component>
 </project>

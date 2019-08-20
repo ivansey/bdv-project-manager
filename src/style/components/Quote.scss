@@ -5,6 +5,12 @@
   padding-bottom: 25px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  & .author {
+    margin-top: 10px;
+  }
 
   & .text {
     width: 60%;

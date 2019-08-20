@@ -145,6 +145,11 @@ select {
   padding-bottom: 25px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.quote .author {
+  margin-top: 10px;
 }
 .quote .text {
   width: 60%;

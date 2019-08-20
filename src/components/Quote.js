@@ -6,7 +6,7 @@ class Quote extends React.Component {
             <p className="text">{this.props.text}</p>
             {
                 this.props.author
-                    ? <p className="author">- {this.props.author}</p>
+                    ? <p className="author">{this.props.author}</p>
                     : null
             }
         </div>

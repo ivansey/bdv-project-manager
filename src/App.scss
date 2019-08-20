@@ -14,7 +14,8 @@ a, a:focus, a:hover {
 }
 
 body {
-  background: $accentColorBackground;
+  background: #009b9b;
+  background: linear-gradient(90deg, rgba(0, 160, 147, 0.5), #00f3a0, #00ff6b, #00f3a0, rgba(0, 160, 147, 0.5));
 }
 
 input {
@@ -58,6 +59,11 @@ textarea {
   & * {
     margin: 10px;
   }
+}
+
+select {
+  padding: 5px;
+  border-radius: 10px;
 }
 
 @import 'style/components/Header';

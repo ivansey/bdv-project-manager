@@ -68,24 +68,6 @@ class ProjectList extends React.Component {
 		return <div className="page" id="index">
 			<h3 className="title">Ваш старт</h3>
 			<Link to="/projects/add">Добавить проект</Link>
-			<label>Категория проекта</label>
-			<select onChange={this.handleCategory} onClick={this.getProjects}>
-				<option value="all" selected={true}>Без категории</option>
-				<option value="invention">Изобретение</option>
-				<option value="it">IT продукт</option>
-				<option value="demand">Спрос</option>
-				<option value="business">Готовый бизнес</option>
-				<option value="transport">Транспорт</option>
-				<option value="home">Недвижимость/Земельные участки</option>
-				<option value="production">Производство</option>
-				<option value="consumerElectronics">Бытовая электроника</option>
-				<option value="hobby">Хобби и отдых</option>
-				<option value="offer">Предложение готовых продуктов</option>
-				<option value="building">Cтроительство</option>
-				<option value="startup">Стартапы</option>
-				<option value="art">Исскуство</option>
-				<option value="other">Другое</option>
-			</select>
 			{
 				this.state.response === "LOADING"
 					? <p>Загрузка...</p>
@@ -99,6 +81,28 @@ class ProjectList extends React.Component {
 			{
 				this.state.projects.length > 0
 					? <div className="contentPage">
+						<div className="panelContent center">
+							<label>Категория проекта</label>
+							<select onChange={this.handleCategory} onClick={this.getProjects}>
+								<option value="all" selected={true}>Без категории</option>
+								<option value="invention">Изобретение</option>
+								<option value="it">IT продукт</option>
+								<option value="demand">Спрос</option>
+								<option value="business">Готовый бизнес</option>
+								<option value="transport">Транспорт</option>
+								<option value="home">Недвижимость/Земельные участки</option>
+								<option value="production">Производство</option>
+								<option value="consumerElectronics">Бытовая электроника</option>
+								<option value="hobby">Хобби и отдых</option>
+								<option value="offer">Предложение готовых продуктов</option>
+								<option value="building">Cтроительство</option>
+								<option value="startup">Стартапы</option>
+								<option value="art">Исскуство</option>
+								<option value="other">Другое</option>
+							</select>
+						</div>
+						<br/>
+						<br/>
 						{
 							this.state.projects.map(news => {
 								return <PanelContent active={this.state.user.active} _id={news._id} title={`Проект #${news.id} - ${news.title}`} desc={news.desc} img={news.img} type="projects/get"/>
@@ -108,7 +112,11 @@ class ProjectList extends React.Component {
 					: null
 			}
 			<br/><br/>
-			<button onClick={this.addLimit}>Ещё проекты</button>
+			{
+				this.state.projects.length === this.state.limit
+					? <button onClick={this.addLimit}>Ещё проекты</button>
+					: null
+			}
 		</div>
 	}
 }

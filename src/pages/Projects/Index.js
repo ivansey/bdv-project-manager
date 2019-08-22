@@ -123,15 +123,16 @@ class ProjectGet extends React.Component {
 									<div className="text">{this.state.project.textPlus}</div>
 									{
 										this.state.user.type === "admin"
-											? <div>
+											? <form className="border">
 												<p>Телефон: {this.state.project.phone}</p>
 												<p>EMail: {this.state.project.email}</p>
-											</div>
+											</form>
 											: null
 									}
 									<br/>
-									<p>Добавить в кейс</p>
-									<form>
+									<form className="border">
+										<p>Добавить в кейс</p>
+										<br/>
 										<label>Телефон</label>
 										<input type="text" onChange={this.handlePhone}/>
 										<label>EMail</label>

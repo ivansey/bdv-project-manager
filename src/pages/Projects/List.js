@@ -69,7 +69,7 @@ class ProjectList extends React.Component {
 		return <div className="page" id="index">
 			<h3 className="title">Ваш старт</h3>
 			{
-				cookie.load("token") !== null || cookie.load("token") !== undefined || this.state.active === false
+				cookie.load("token") === null || cookie.load("token") === undefined || this.state.active === false
 					? <Popup trigger={<button>Добавить проект</button>} modal closeOnDocumentClick>
 						<div>Ваш аккаунт не активирован или вы не зарегистрированы.</div>
 						<div>

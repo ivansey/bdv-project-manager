@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/About.js" afterDir="false" />
+    <list default="true" id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="Add About">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Quote.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Quote.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/About.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/About.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Projects/List.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Projects/List.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/style/Pages.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/Pages.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/style/components/Form.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/components/Form.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +115,7 @@
       <workItem from="1566207984514" duration="12860000" />
       <workItem from="1566245489305" duration="5204000" />
       <workItem from="1566297932070" duration="8189000" />
-      <workItem from="1566465401334" duration="4482000" />
+      <workItem from="1566465401334" duration="5624000" />
     </task>
     <task id="LOCAL-00001" summary="Init repository">
       <created>1565988959541</created>
@@ -290,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566317948977</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Add About">
+      <created>1566492916376</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1566492916376</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,6 +324,7 @@
     <MESSAGE value="Restyle" />
     <MESSAGE value="Fix bugs" />
     <MESSAGE value="Restyle Quote" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restyle Quote" />
+    <MESSAGE value="Add About" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add About" />
   </component>
 </project>

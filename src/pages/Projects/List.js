@@ -14,7 +14,7 @@ class ProjectList extends React.Component {
 			response: "LOADING",
 			user: {},
 			limit: 10,
-			category: ""
+			category: "all"
 		};
 		
 		this.checkToken = this.checkToken.bind(this);

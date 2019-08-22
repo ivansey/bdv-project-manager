@@ -297,6 +297,9 @@ form.border.error {
 .page .contentPage.news .likes {
   margin-top: 10px;
 }
+.page .contentPage.news .text {
+  margin: 0;
+}
 .page .contentPage.news * {
   text-align: left;
 }

@@ -278,6 +278,7 @@ form.border.error {
   background: #fff;
   border-radius: 10px;
   border: 1px solid #7A7A7A;
+  padding: 10px;
 }
 .page .contentPage.news {
   text-align: left;
@@ -295,6 +296,9 @@ form.border.error {
 }
 .page .contentPage.news .likes {
   margin-top: 10px;
+}
+.page .contentPage.news * {
+  text-align: left;
 }
 .page .contentPage.news .comments {
   padding: 20px;

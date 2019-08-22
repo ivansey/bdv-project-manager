@@ -39,6 +39,7 @@
     background: #fff;
     border-radius: 10px;
     border: 1px solid $borderGray;
+    padding: 10px;
 
     &.news {
       text-align: left;
@@ -58,6 +59,10 @@
 
       & .likes {
         margin-top: 10px;
+      }
+
+      & * {
+        text-align: left;
       }
 
       & .comments {

@@ -4,6 +4,7 @@ import axios from "axios";
 import cookie from "react-cookies";
 
 import PanelContent from "../../components/PanelContent";
+import Popup from "reactjs-popup";
 
 class ProjectList extends React.Component {
 	constructor(props) {
@@ -67,7 +68,17 @@ class ProjectList extends React.Component {
 	render() {
 		return <div className="page" id="index">
 			<h3 className="title">Ваш старт</h3>
-			<Link to="/projects/add">Добавить проект</Link>
+			{
+				cookie.load("token") !== null || cookie.load("token") !== undefined || this.state.active === false
+					? <Popup trigger={<button>Добавить проект</button>} modal closeOnDocumentClick>
+						<div>Ваш аккаунт не активирован или вы не зарегистрированы.</div>
+						<div>
+							<Link to="/reg" className="button">Регистрация</Link>
+							<Link to="/login" className="button">Вход</Link>
+						</div>
+					</Popup>
+					: <Link to="/projects/add" сlassName="button">Добавить проект</Link>
+			}
 			{
 				this.state.response === "LOADING"
 					? <p>Загрузка...</p>

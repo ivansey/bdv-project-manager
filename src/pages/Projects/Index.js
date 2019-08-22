@@ -119,8 +119,10 @@ class ProjectGet extends React.Component {
 									<p className="time">{this.state.project.time}</p>
 									<h2 className="title">Проект #{this.state.project.id} - {this.state.project.title}</h2>
 									<div className="text">{this.state.project.text}</div>
+									<br/><br/>
 									<p>Требование/Предложение: </p>
 									<div className="text">{this.state.project.textPlus}</div>
+									<br/><br/>
 									{
 										this.state.user.type === "admin"
 											? <form className="border">
@@ -138,7 +140,7 @@ class ProjectGet extends React.Component {
 										<label>EMail</label>
 										<input type="email" onChange={this.handleEmail}/>
 										<label>Примечание</label>
-										<input type="text" onChange={this.handleText}/>
+										<input type="text" onChange={this.handleText}/> <br/>
 										<button type="button" onClick={this.addToCart}>Добавить в кейс</button>
 									</form>
 								</div>

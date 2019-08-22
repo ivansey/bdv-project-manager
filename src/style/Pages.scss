@@ -36,6 +36,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid $borderGray;
 
     &.news {
       text-align: left;

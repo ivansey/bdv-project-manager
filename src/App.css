@@ -275,6 +275,9 @@ form.border.error {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #7A7A7A;
 }
 .page .contentPage.news {
   text-align: left;

@@ -3,7 +3,7 @@ import axios from 'axios';
 import cookie from 'react-cookies';
 import {Redirect, Link} from 'react-router-dom';
 
-class ProjectAdd extends React.Component {
+class ProjectEdit extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -16,13 +16,14 @@ class ProjectAdd extends React.Component {
 			textPlus: "",
 			phone: "",
 			email: "",
-			img: "",
-			category: "invention"
+			category: "invention",
+			project: {}
 		};
 		
 		this.getInfo = this.getInfo.bind(this);
 		this.checkToken = this.checkToken.bind(this);
-		this.addProject = this.addProject.bind(this);
+		this.getProject = this.getProject.bind(this);
+		this.editProject = this.editProject.bind(this);
 		this.uploadImg = this.uploadImg.bind(this);
 		
 		this.handleTitle = this.handleTitle.bind(this);
@@ -33,32 +34,30 @@ class ProjectAdd extends React.Component {
 		this.turnOffError = this.turnOffError.bind(this);
 		
 		this.checkToken();
+		this.getProject();
 	}
 	
 	getInfo = () => {
 		axios.post('/api/v1/users/get', {
 			idUser: this.state.idUser
-		}).then((data) => {
+		}).then(data => {
 			this.setState({user: data.data.data});
 		});
 	};
 	
-	addProject = () => {
+	editProject = () => {
 		if (this.state.user.id !== "") {
 			if (this.checkFields) {
-				axios.post('/api/v1/projects/add', {
-					idUser: this.state.user._id,
+				axios.post('/api/v1/projects/edit', {
 					title: this.state.title,
 					text: this.state.text,
 					desc: this.state.desc,
-					img: this.state.img,
 					textPlus: this.state.textPlus,
 					phone: this.state.phone,
 					email: this.state.email,
-					token: cookie.load("token"),
 					category: this.state.category,
-					value: 1500
-				}).then((data) => {
+					id: this.state.project._id
+				}).then(data => {
 					this.setState({response: "LOADING"});
 					this.setState({response: data.data.response});
 				});
@@ -84,13 +83,30 @@ class ProjectAdd extends React.Component {
 		if (cookie.load('token')) {
 			axios.post('/api/v1/users/checkToken', {
 				token: cookie.load('token'),
-			}).then((data) => {
+			}).then(data => {
 				if (data.data.response !== "NOT_TOKEN") {
 					this.setState({idUser: data.data.id, status: "USER"});
 					this.getInfo();
 				}
 			});
 		}
+	};
+	
+	getProject = () => {
+		axios.post('/api/v1/projects/get', {
+			id: this.props.match.params.id
+		}).then(data => {
+			this.setState({
+				response: data.data.response,
+				project: data.data.data,
+				title: data.data.data.title,
+				desc: data.data.data.desc,
+				text: data.data.data.text,
+				textPlus: data.data.data.textPlus,
+				phone: data.data.data.phone,
+				email: data.data.data.email
+			});
+		});
 	};
 	
 	handleTitle = (e) => {
@@ -143,49 +159,59 @@ class ProjectAdd extends React.Component {
 	render() {
 		return <div className="page" id="newsAdd">
 			<h3 className="title">Добавление новости</h3>
-			{
-				this.state.category === "kids"
-					? <p>Цена добавления: 300 RUB</p>
-					: <p>Цена добавления: 1500 RUB</p>
-			}
-			{
-				this.state.user.balance >= 1500 && this.state.user.balance !== undefined
-					? <p>У Вас на счету {this.state.user.balance}</p>
-					: <p>У вас не достаточно денег на счету (необходимо ещё {1500 - this.state.user.balance})</p>
-			}
+			<br/>
 			<div className="contentPage">
 				{
-					cookie.load("token") !== undefined && cookie.load("token") !== null
+					(cookie.load("token") !== undefined || cookie.load("token") !== null) && this.state.project.title !== undefined
 						? <form className={this.state.empty ? "error border" : "border"}>
 							<label>Заголовок</label>
-							<input type="text" name="title" onChange={this.handleTitle}/>
+							<input type="text" name="title" onChange={this.handleTitle}
+							       defaultValue={this.state.project.title}/>
 							<label>Краткое описание</label>
-							<textarea onChange={this.handleDesc}/>
+							<textarea onChange={this.handleDesc} defaultValue={this.state.project.desc}/>
 							<label>Содержание</label>
-							<textarea onChange={this.handleText}/>
+							<textarea onChange={this.handleText} defaultValue={this.state.project.text}/>
 							<label>Категория проекта</label>
 							<select onChange={this.handleCategory}>
-								<option value="invention" selected={true}>Изобретение</option>
-								<option value="it">IT продукт</option>
-								<option value="demand">Спрос</option>
-								<option value="business">Готовый бизнес</option>
-								<option value="transport">Транспорт</option>
-								<option value="home">Недвижимость/Земельные участки</option>
-								<option value="production">Производство</option>
-								<option value="consumerElectronics">Бытовая электроника</option>
-								<option value="hobby">Хобби и отдых</option>
-								<option value="offer">Предложение готовых продуктов</option>
-								<option value="building">Cтроительство</option>
-								<option value="startup">Стартапы</option>
-								<option value="art">Исскуство</option>
-								<option value="kids">Детские проеты</option>
-								<option value="other">Другое</option>
+								<option value="invention"
+								        selected={"invention" === this.state.project.category}>Изобретение
+								</option>
+								<option value="it" selected={"it" === this.state.project.category}>IT продукт</option>
+								<option value="demand" selected={"demand" === this.state.project.category}>Спрос</option>
+								<option value="business" selected={"business" === this.state.project.category}>Готовый
+									бизнес
+								</option>
+								<option value="transport" selected={"transport" === this.state.project.category}>Транспорт
+								</option>
+								<option value="home"
+								        selected={"home" === this.state.project.category}>Недвижимость/Земельные участки
+								</option>
+								<option value="production"
+								        selected={"production" === this.state.project.category}>Производство
+								</option>
+								<option value="consumerElectronics"
+								        selected={"consumerElectronics" === this.state.project.category}>Бытовая электроника
+								</option>
+								<option value="hobby" selected={"hobby" === this.state.project.category}>Хобби и отдых
+								</option>
+								<option value="offer" selected={"offer" === this.state.project.category}>Предложение готовых
+									продуктов
+								</option>
+								<option value="building"
+								        selected={"building" === this.state.project.category}>Cтроительство
+								</option>
+								<option value="startup" selected={"startup" === this.state.project.category}>Стартапы
+								</option>
+								<option value="art" selected={"art" === this.state.project.category}>Исскуство</option>
+								<option value="kids" selected={"kids" === this.state.project.category}>Детские проеты
+								</option>
+								<option value="other" selected={"other" === this.state.project.category}>Другое</option>
 							</select>
 							{
 								this.state.category === "demand"
 									? <div>
 										<label>Спрос</label>
-										<textarea onChange={this.handleTextPlus}/>
+										<textarea onChange={this.handleTextPlus} defaultValue={this.state.project.ttextPlus}/>
 									</div>
 									: null
 							}
@@ -193,20 +219,21 @@ class ProjectAdd extends React.Component {
 								this.state.category !== "demand"
 									? <div>
 										<label>Предложение</label>
-										<textarea onChange={this.handleTextPlus}/>
+										<textarea onChange={this.handleTextPlus} defaultValue={this.state.project.textPlus}/>
 									</div>
 									: null
 							}
 							<label>Номер телефона</label>
-							<input type="text" name="phone" onChange={this.handlePhone}/>
+							<input type="text" name="phone" onChange={this.handlePhone}
+							       defaultValue={this.state.project.phone}/>
 							<label>EMail</label>
-							<input type="email" onChange={this.handleEmail}/>
-							<label>Фото (не обязательно)</label>
-							<input type="file" ref={ref => {
-								this.uploadFile = ref;
-							}} onChange={this.uploadImg}/>
+							<input type="email" onChange={this.handleEmail} defaultValue={this.state.project.email}/>
+							{/*<label>Фото (не обязательно)</label>*/}
+							{/*<input type="file" ref={ref => {*/}
+							{/*	this.uploadFile = ref;*/}
+							{/*}} onChange={this.uploadImg}/>*/}
 							<div className="buttons">
-								<button type="button" onClick={this.addProject}>Создать</button>
+								<button type="button" onClick={this.editProject}>Редактировать</button>
 							</div>
 							{
 								this.state.empty
@@ -219,16 +246,16 @@ class ProjectAdd extends React.Component {
 									: null
 							}
 							{
-								this.state.response === "PROJECT_ADD"
-									? <Redirect to="/projects"/>
+								this.state.response === "EDITED"
+									? <Redirect to={"/projects/get/" + this.state.project._id}/>
 									: null
 							}
 						</form>
-						: <Redirect to="/projects"/>
+						: null
 				}
 			</div>
 		</div>
 	}
 }
 
-export default ProjectAdd;
+export default ProjectEdit;

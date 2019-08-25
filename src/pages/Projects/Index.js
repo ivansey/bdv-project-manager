@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from "axios";
 import cookie from "react-cookies";
-import {Redirect} from 'react-router-dom';
+import {Redirect, Link} from 'react-router-dom';
+import Popup from "reactjs-popup";
 
 class ProjectGet extends React.Component {
 	constructor(props) {
@@ -13,7 +14,8 @@ class ProjectGet extends React.Component {
 			category: "",
 			email: "",
 			phone: "",
-			text: ""
+			text: "",
+			responseAddLevel: ""
 		};
 		
 		this.checkToken = this.checkToken.bind(this);
@@ -24,6 +26,7 @@ class ProjectGet extends React.Component {
 		this.handlePhone = this.handlePhone.bind(this);
 		this.handleText = this.handleText.bind(this);
 		this.addToCart = this.addToCart.bind(this);
+		this.addLevelOne = this.addLevelOne.bind(this);
 		
 		this.checkToken();
 		this.getProject();
@@ -34,6 +37,7 @@ class ProjectGet extends React.Component {
 			idUser: this.state.idUser
 		}).then(data => {
 			this.setState({user: data.data.data});
+			console.log(data.data.data);
 		});
 	};
 	
@@ -53,6 +57,7 @@ class ProjectGet extends React.Component {
 			id: this.props.match.params.id
 		}).then(data => {
 			this.setState({response: data.data.response, project: data.data.data});
+			console.log(data.data.data);
 		});
 	};
 	
@@ -88,6 +93,17 @@ class ProjectGet extends React.Component {
 		});
 	};
 	
+	addLevelOne = () => {
+		axios.post("/api/v1/projects/addLevel", {
+			idUser: this.state.user._id,
+			id: this.state.project._id,
+			level: 1,
+			token: cookie.load("token")
+		}).then(data => {
+			this.setState({responseAddLevel: data.data.response});
+		});
+	};
+	
 	render() {
 		return <div>
 			{
@@ -113,10 +129,26 @@ class ProjectGet extends React.Component {
 									}
 									{
 										this.state.user.type === "admin"
-											? <div><a href="#" onClick={this.deleteProject}>Удалить</a></div>
+											? <div><a href={"#"} onClick={this.deleteProject}>Удалить</a></div>
 											: null
 									}
-									<p className="time">{this.state.project.time}</p>
+									{
+										this.state.project.idUser === this.state.user._id
+											? <form className="border">
+												<p>Не хотите ли продвинуть в топ свой проект? Вы будете в первых списках проектов, и всего за 5000 RUB</p>
+												{
+													this.state.user.balance >= 5000
+														? <p>У вас на счету {this.state.user.balance} RUB</p>
+														: <p>У вас  недостаточно средств на счету (необходимо ещё {5000 - this.state.user.balance} RUB)</p>
+												}
+												<p>Для покупки необходимо 5000 RUB</p>
+												<div>
+													<button onClick={this.addLevelOne}>Приобрести</button>
+												</div>
+											</form>
+											: null
+									}
+									<p className="time">{this.state.project.time} {this.state.project.idUser === this.state.user._id ? [<Link to={"/projects/edit/" + this.state.project._id}>Редактировать</Link>] : null}</p>
 									<h2 className="title">Проект #{this.state.project.id} - {this.state.project.title}</h2>
 									<div className="text">{this.state.project.text}</div>
 									<br/><br/>

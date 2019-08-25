@@ -11,8 +11,8 @@ class Activate extends React.Component {
 	activateUser = () => {
 		axios.post("/api/v1/users/activate", {
 			id: this.props.match.params.id
-		});
-	}
+		}).then();
+	};
 	
 	render() {
 		return <div>Вы активировали свой аккаунт</div>

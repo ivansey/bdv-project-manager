@@ -2,68 +2,68 @@
 @import "style/Colors";
 
 * {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  transition: all .3s;
-  outline: none;
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	transition: all .3s;
+	outline: none;
 }
 
 a, a:focus, a:hover {
-  color: inherit;
+	color: inherit;
 }
 
 body {
-  background: #009b9b;
-  background: linear-gradient(90deg, rgba(0, 160, 147, 0.5), #00f3a0, #00ff6b, #00f3a0, rgba(0, 160, 147, 0.5));
+	background: #009b9b;
+	background: linear-gradient(90deg, rgba(0, 160, 147, 0.5), #00f3a0, #00ff6b, #00f3a0, rgba(0, 160, 147, 0.5));
 }
 
 input {
-  border: 1px solid $borderGray;
-  border-radius: 10px;
-  padding: 5px 5px;
-  position: relative;
+	border: 1px solid $borderGray;
+	border-radius: 10px;
+	padding: 5px 5px;
+	position: relative;
 }
 
 button, .button {
-  background: $accentColor;
-  border: 0;
-  border-radius: 10px;
-  color: #fff;
-  padding: 5px;
-  font-size: 1em;
-  text-decoration: none;
-  text-align: center;
+	background: $accentColor;
+	border: 0;
+	border-radius: 10px;
+	color: #fff;
+	padding: 5px;
+	font-size: 1em;
+	text-decoration: none;
+	text-align: center;
 
-  &:hover, &:focus {
-    background: $accentColorLight;
-    color: #fff;
-  }
+	&:hover, &:focus {
+		background: $accentColorLight;
+		color: #fff;
+	}
 }
 
 textarea {
-  border: 1px solid $borderGray;
-  border-radius: 10px;
-  padding: 5px 5px;
+	border: 1px solid $borderGray;
+	border-radius: 10px;
+	padding: 5px 5px;
 }
 
 .popup-content {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border-radius: 20px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	border-radius: 20px;
 
-  & * {
-    margin: 10px;
-  }
+	& * {
+		margin: 10px;
+	}
 }
 
 select {
-  padding: 5px;
-  border-radius: 10px;
+	padding: 5px;
+	border-radius: 10px;
 }
 
 @import 'style/components/Header';

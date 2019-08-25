@@ -15,11 +15,11 @@ class PanelContent extends React.Component {
 			{
 				!this.props.active && this.props.type === "projects/get"
 					? <Popup trigger={<button>Читать далее...</button>} modal closeOnDocumentClick>
-					    <div>Ваш аккаунт не активирован или вы не зарегистрированы.</div>
-                        <div>
-                            <Link to="/reg" className="button">Регистрация</Link>
-                            <Link to="/login" className="button">Вход</Link>
-                        </div>
+						<div>Ваш аккаунт не активирован или вы не зарегистрированы.</div>
+						<div>
+							<Link to="/reg" className="button">Регистрация</Link>
+							<Link to="/login" className="button">Вход</Link>
+						</div>
 					</Popup>
 					: <Link to={`/${this.props.type}/${this.props._id}`} className="button" style={{display: 'block'}}>Читать
 						далее...</Link>

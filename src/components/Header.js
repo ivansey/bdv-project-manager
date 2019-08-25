@@ -51,12 +51,8 @@ class Header extends React.Component {
 				}
 				{
 					cookie.load('token') !== null && cookie.load('token') !== undefined
-						? <Link to={`/user/${this.state.user.id}`}>{this.state.user.firstName + " " + this.state.user.lastName}</Link>
-						: null
-				}
-				{
-					cookie.load('token') !== null && cookie.load('token') !== undefined
-						? <Link to={`/user/balance`}>{this.state.user.balance + " RUB"}</Link>
+						? <Link
+							to={`/user/cabinet`}>{this.state.user.firstName + " " + this.state.user.lastName} {this.state.user.balance + " RUB"}</Link>
 						: null
 				}
 			</div>

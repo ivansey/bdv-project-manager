@@ -57,14 +57,6 @@ class CasesList extends React.Component {
 		});
 	};
 	
-	getProject = id => {
-		axios.post('/api/v1/projects/get', {
-			id: id
-		}).then(data => {
-			this.setState({project: data.data.data})
-		});
-	};
-	
 	render() {
 		return <div className="page" id="cases">
 			<h3 className="title">Кейсы</h3>
@@ -83,7 +75,6 @@ class CasesList extends React.Component {
 					? <div className="contentPage">
 						{
 							this.state.cases.map(news => {
-								let project = this.getProject(news.idProject);
 								return <div className="panelContent">
 									<p>Проект #{this.state.project.id} - {this.state.project.title}</p>
 									<br/>

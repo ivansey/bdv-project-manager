@@ -1,90 +1,90 @@
 .header {
-  background: url("/backgroundHeader.jpg");
-  color: #fff;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  background-size: cover;
-  background-position: center;
-  text-shadow: #000 2px 2px 2px;
+	background: url("/backgroundHeader.jpg");
+	color: #fff;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	background-size: cover;
+	background-position: center;
+	text-shadow: #000 2px 2px 2px;
 
-  & .text {
-    margin-top: 100px;
-    margin-bottom: 120px;
+	& .text {
+		margin-top: 100px;
+		margin-bottom: 120px;
 
-    & h1, h2 {
-      font-family: "Pacifico", cursive;
-      font-weight: normal;
-    }
-  }
+		& h1, h2 {
+			font-family: "Pacifico", cursive;
+			font-weight: normal;
+		}
+	}
 
-  & .menu {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+	& .menu {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 
-    &.border {
-      border-bottom: 5px solid $accentColor;
-    }
+		&.border {
+			border-bottom: 5px solid $accentColor;
+		}
 
-    &.red {
-      background: #f00;
+		&.red {
+			background: #f00;
 
-      & a:hover {
-        background: #f00;
-      }
-    }
+			& a:hover {
+				background: #f00;
+			}
+		}
 
-    & a {
-      text-decoration: none;
-      padding: 5px 10px;
+		& a {
+			text-decoration: none;
+			padding: 5px 10px;
 
-      &:hover {
-        background: $accentColor;
-        text-shadow: #000 0 0;
-      }
+			&:hover {
+				background: $accentColor;
+				text-shadow: #000 0 0;
+			}
 
-      &.top {
-        animation: top 1s infinite ease-in-out;
-        text-shadow: #000 0 0;
-      }
-    }
-  }
+			&.top {
+				animation: top 1s infinite ease-in-out;
+				text-shadow: #000 0 0;
+			}
+		}
+	}
 }
 
 @keyframes top {
-  from {
-    background: $accentColor;
-  }
-  50% {
-    background: $accentColorLight;
-  }
-  to {
-    background: $accentColor;
-  }
+	from {
+		background: $accentColor;
+	}
+	50% {
+		background: $accentColorLight;
+	}
+	to {
+		background: $accentColor;
+	}
 }
 
 @keyframes topBorder {
-  from {
-    border-bottom: 5px solid $accentColor;
-  }
-  50% {
-    border-bottom: 5px solid $accentColorLight;
-  }
-  to {
-    border-bottom: 5px solid $accentColor;
-  }
+	from {
+		border-bottom: 5px solid $accentColor;
+	}
+	50% {
+		border-bottom: 5px solid $accentColorLight;
+	}
+	to {
+		border-bottom: 5px solid $accentColor;
+	}
 }
 
 @media (max-width: 800px) {
-  .header {
-    & .text {
-      //margin: 40px;
-      margin-top: 60px;
-      margin-bottom: 20px;
-    }
-  }
+	.header {
+		& .text {
+			//margin: 40px;
+			margin-top: 60px;
+			margin-bottom: 20px;
+		}
+	}
 }

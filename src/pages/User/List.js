@@ -6,29 +6,25 @@ import cookie from "react-cookies";
 import PanelContent from "../../components/PanelContent";
 import Popup from "reactjs-popup";
 
-class ProjectList extends React.Component {
+class UserProjectList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			projects: [],
-			projectsTopOne: [],
 			response: "LOADING",
 			user: {},
 			limit: 10,
-			limitTopOne: 10,
 			category: "all"
 		};
 		
 		this.checkToken = this.checkToken.bind(this);
 		this.getInfo = this.getInfo.bind(this);
 		this.getProjects = this.getProjects.bind(this);
-		this.getProjectsTopOne = this.getProjectsTopOne.bind(this);
 		this.handleCategory = this.handleCategory.bind(this);
 		this.addLimit = this.addLimit.bind(this);
 		
 		this.checkToken();
 		this.getProjects();
-		this.getProjectsTopOne();
 	}
 	
 	getInfo = () => {
@@ -36,6 +32,7 @@ class ProjectList extends React.Component {
 			idUser: this.state.idUser
 		}).then(data => {
 			this.setState({user: data.data.data});
+			this.getProjects();
 		});
 	};
 	
@@ -56,20 +53,12 @@ class ProjectList extends React.Component {
 	};
 	
 	getProjects = () => {
-		axios.post('/api/v1/projects/list', {
+		axios.post('/api/v1/users/projects/list', {
 			limit: this.state.limit,
-			category: this.state.category
+			category: this.state.category,
+			id: this.state.user._id
 		}).then(data => {
 			this.setState({response: data.data.response, projects: data.data.data});
-		});
-	};
-	
-	getProjectsTopOne = () => {
-		axios.post('/api/v1/projects/listTop', {
-			limit: this.state.limitTopOne,
-			level: 1
-		}).then(data => {
-			this.setState({responseTopOne: data.data.response, projectsTopOne: data.data.data});
 		});
 	};
 	
@@ -80,7 +69,13 @@ class ProjectList extends React.Component {
 	
 	render() {
 		return <div className="page" id="index">
-			<h3 className="title">Ваш старт</h3>
+			<form className="border">
+				<h2>{this.state.user.balance} RUB</h2>
+				<br/>
+				<Link to="/user/balance/add">Пополнить баланс</Link>
+			</form>
+			<br/><br/>
+			<h3 className="title">Ваши проекты</h3>
 			{
 				cookie.load("token") === null || cookie.load("token") === undefined || this.state.active === false
 					? <Popup trigger={<button>Добавить проект</button>} modal closeOnDocumentClick>
@@ -91,22 +86,6 @@ class ProjectList extends React.Component {
 						</div>
 					</Popup>
 					: <Link to="/projects/add" сlassName="button">Добавить проект</Link>
-			}
-			<br/><br/>
-			{
-				this.state.projectsTopOne.length > 0
-					? <div className="panelContent center">
-						<br/>
-						<br/>
-						{
-							this.state.projectsTopOne.map(news => {
-								return <PanelContent active={this.state.user.active} _id={news._id}
-								                     title={`Проект #${news.id} - ${news.title}`} desc={news.desc}
-								                     img={news.img} type="projects/get"/>
-							})
-						}
-					</div>
-					: null
 			}
 			<br/><br/>
 			<div className="panelContent center">
@@ -142,7 +121,7 @@ class ProjectList extends React.Component {
 			}
 			{
 				this.state.projects.length > 0
-					? <div className="panelContent center">
+					? <div className="contentPage">
 						<br/>
 						<br/>
 						{
@@ -165,4 +144,4 @@ class ProjectList extends React.Component {
 	}
 }
 
-export default ProjectList;
+export default UserProjectList;

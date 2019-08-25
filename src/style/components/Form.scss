@@ -1,37 +1,37 @@
 form.border {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border: 1px solid $borderGray;
-  border-radius: 10px;
-  width: 400px;
-  background: #fff;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	border: 1px solid $borderGray;
+	border-radius: 10px;
+	width: 400px;
+	background: #fff;
 
-  & label {
-    width: 100%;
-    margin-bottom: 5px;
-  }
+	& label {
+		width: 100%;
+		margin-bottom: 5px;
+	}
 
-  & input {
-    width: 100%;
-  }
+	& input {
+		width: 100%;
+	}
 
-  & .buttons * {
-    position: relative;
-    float: right;
-  }
+	& .buttons * {
+		position: relative;
+		float: right;
+	}
 
-  &.error {
-    border-color: $errorColor;
-    background: $errorColorLight;
-  }
+	&.error {
+		border-color: $errorColor;
+		background: $errorColorLight;
+	}
 }
 
 @media (max-width: 500px) {
-  form.border {
-    border: 0;
-    border-radius: 0;
-    width: 90%;
-  }
+	form.border {
+		border: 0;
+		border-radius: 0;
+		width: 90%;
+	}
 }

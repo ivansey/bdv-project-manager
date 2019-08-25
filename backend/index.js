@@ -5,6 +5,7 @@ let md5 = require('md5');
 let cors = require('cors');
 let fileUpload = require('express-fileupload');
 let nodemailer = require('nodemailer');
+let moment = require('moment');
 
 let smtp;
 
@@ -357,20 +358,26 @@ app.post("/api/v1/projects/add", (req, res) => {
 			res.json({response: "ACCESS_DENIED"});
 		}
 		
+		let cost = 1500;
+		
+		if (req.body.category === "kids") {
+			cost = 300;
+		}
+		
 		usersModel.find({_id: req.body.idUser}).then(data2 => {
-			if (data2[0].balance < 1500) {
+			if (data2[0].balance < cost) {
 				res.json({response: "NOT_MONEY"});
 				return
 			}
-			usersModel.findByIdAndUpdate(req.body.idUser, {balance: data2[0].balance - req.body.value}).then(data3 => {
-				console.log(data3);
-			});
+			usersModel.findByIdAndUpdate(req.body.idUser, {balance: data2[0].balance - cost}).then();
 		});
 		
 		projectsModel.find().then(data => {
 			let date = new Date();
 			
 			let id = data.length + 1;
+			
+			let dateString = date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
 			
 			let project = new projectsModel({
 				title: req.body.title,
@@ -379,12 +386,14 @@ app.post("/api/v1/projects/add", (req, res) => {
 				text: req.body.text,
 				desc: req.body.desc,
 				textPlus: req.body.textPlus,
-				time: date.getDay() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
+				time: moment(date).format("D/M/YYYY H:m:s"),
+				timePayment: moment(dateString).add(240, "days").format("D/M/YYYY"),
 				active: true,
 				phone: req.body.phone,
 				email: req.body.email,
 				idUser: req.body.idUser,
-				id: id
+				id: id,
+				plusLevel: 0
 			});
 			project.save();
 			
@@ -439,7 +448,7 @@ app.post("/api/v1/projects/add", (req, res) => {
 
 app.post("/api/v1/projects/list", (req, res) => {
 	if (req.body.category === 'all') {
-		projectsModel.find({}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+		projectsModel.find({active: true}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
 			if (data.length === 0) {
 				res.json({response: "NOT_PROJECTS", data: {}});
 			} else {
@@ -447,7 +456,10 @@ app.post("/api/v1/projects/list", (req, res) => {
 			}
 		});
 	} else {
-		projectsModel.find({category: req.body.category}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+		projectsModel.find({
+			category: req.body.category,
+			active: true
+		}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
 			if (data.length === 0) {
 				res.json({response: "NOT_PROJECTS", data: {}});
 			} else {
@@ -455,6 +467,43 @@ app.post("/api/v1/projects/list", (req, res) => {
 			}
 		});
 	}
+});
+
+app.post("/api/v1/users/projects/list", (req, res) => {
+	if (req.body.category === 'all') {
+		projectsModel.find({active: true, idUser: req.body.id}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+			if (data.length === 0) {
+				res.json({response: "NOT_PROJECTS", data: {}});
+			} else {
+				res.json({response: "PROJECTS_FOUND", data: data});
+			}
+		});
+	} else {
+		projectsModel.find({
+			category: req.body.category,
+			active: true,
+			idUser: req.body.id
+		}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+			if (data.length === 0) {
+				res.json({response: "NOT_PROJECTS", data: {}});
+			} else {
+				res.json({response: "PROJECTS_FOUND", data: data});
+			}
+		});
+	}
+});
+
+app.post("/api/v1/projects/listTop", (req, res) => {
+	projectsModel.find({
+		active: true,
+		plusLevel: req.body.level
+	}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+		if (data.length === 0) {
+			res.json({response: "NOT_PROJECTS", data: {}});
+		} else {
+			res.json({response: "PROJECTS_FOUND", data: data});
+		}
+	});
 });
 
 app.post("/api/v1/projects/get", (req, res) => {
@@ -467,5 +516,108 @@ app.post("/api/v1/projects/get", (req, res) => {
 		}
 	});
 });
+
+app.post("/api/v1/projects/edit", (req, res) => {
+	projectsModel.find({_id: req.body.id}).limit(1).then(data => {
+		if (data.length === 0) {
+			res.json({response: "NOT_PROJECTS", data: {}});
+		} else {
+			projectsModel.findByIdAndUpdate(data[0]._id, {
+				title: req.body.title,
+				category: req.body.category,
+				text: req.body.text,
+				desc: req.body.desc,
+				textPlus: req.body.textPlus,
+				phone: req.body.phone,
+				email: req.body.email
+			}).then(() => {
+				res.json({response: "EDITED", data: data[0]});
+			});
+		}
+	});
+});
+
+app.post("/api/v1/projects/addLevel", (req, res) => {
+	console.log(req.body);
+	projectsModel.find({_id: req.body.id}).limit(1).then(data => {
+		if (data.length === 0) {
+			res.json({response: "NOT_PROJECTS", data: {}});
+		} else {
+			let cost;
+			
+			if (req.body.level === 1) {
+				cost = 5000;
+			}
+			
+			usersModel.find({_id: req.body.idUser}).then(data => {
+				if (data[0].balance < cost) {
+					res.json({response: "NOT_MONEY"});
+					return
+				}
+				
+				usersModel.findByIdAndUpdate(req.body.idUser, {balance: data[0].balance - cost}).then(data => {
+					projectsModel.findByIdAndUpdate(req.body.id, {
+						plusLevel: req.body.level
+					}).then(data => {
+						res.json({response: "EDITED", data: data[0]});
+					});
+				});
+			});
+		}
+	});
+});
+
+setInterval(() => {
+	let now = moment(new Date());
+	let cost = 30;
+	projectsModel.find().then(data => {
+		for (let project in data) {
+			if (now.format("D/M/YYYY") >= moment(project.timePayment).format("D/M/YYYY")) {
+				usersModel.find({_id: project.idUser}).then(data2 => {
+					if (data2[0].balance >= cost) {
+						usersModel.findByIdAndUpdate(data2[0]._id, {balance: data2[0].balance - 30});
+						output = `<h1>BDV - Бизнес Делая Вместе</h1>
+		                    <h2>Уведомление о продлении размещения проекта</h2>
+		                    <div>Прошло 240 дней, и пришла пора оплачивать размещение проекта. Оно стоит 30 рублей за каждые 240 дней. Они у вас изьяты из счёта. Остаток: ${data2[0].balance} RUB</div>
+							<a href="http://ivansey.ru/projects/get/${project._id}">Открыть проект</a>`
+						mailOptions = {
+							from: 'root@ivansey.ru',
+							to: data2[0].email,
+							subject: `BDV - Уведомление о продлении размещения проекта #${project.id}`,
+							text: `BDV - Уведомление о продлении размещения проекта #${project.id}`,
+							html: output
+						};
+						smtp.sendMail(mailOptions, (error, info) => {
+							if (error) {
+								console.error(error);
+							}
+						});
+					} else {
+						projectsModel.findByIdAndUpdate(project._id, {
+							active: false,
+							timePayment: moment(now).add(60, "days").format("D/M/YYYY")
+						});
+						output = `<h1>BDV - Бизнес Делая Вместе</h1>
+		                    <h2>Уведомление о продлении размещения проекта</h2>
+		                    <div>Прошло 240 дней, и пришла пора оплачивать размещение проекта. Оно стоит 30 рублей за каждые 240 дней. У вас не достаточно средств для этого. Остаток: ${data2[0].balance} RUB</div>
+							<a href="http://ivansey.ru/projects/get/${project._id}">Открыть проект</a>`
+						mailOptions = {
+							from: 'root@ivansey.ru',
+							to: data2[0].email,
+							subject: `BDV - Уведомление о продлении размещения проекта #${project.id}`,
+							text: `BDV - Уведомление о продлении размещения проекта #${project.id}`,
+							html: output
+						};
+						smtp.sendMail(mailOptions, (error, info) => {
+							if (error) {
+								console.error(error);
+							}
+						});
+					}
+				});
+			}
+		}
+	});
+}, 86400000)
 
 app.listen(PORT, () => console.log("Server started on port " + PORT));

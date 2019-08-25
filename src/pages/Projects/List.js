@@ -12,11 +12,14 @@ class ProjectList extends React.Component {
 		this.state = {
 			projects: [],
 			projectsTopOne: [],
+			projectsSearch: [],
 			response: "LOADING",
 			user: {},
 			limit: 10,
 			limitTopOne: 10,
-			category: "all"
+			category: "all",
+			search: false,
+			text: ""
 		};
 		
 		this.checkToken = this.checkToken.bind(this);
@@ -25,6 +28,8 @@ class ProjectList extends React.Component {
 		this.getProjectsTopOne = this.getProjectsTopOne.bind(this);
 		this.handleCategory = this.handleCategory.bind(this);
 		this.addLimit = this.addLimit.bind(this);
+		this.searchProject = this.searchProject.bind(this);
+		this.handleSearch = this.handleSearch.bind(this);
 		
 		this.checkToken();
 		this.getProjects();
@@ -50,9 +55,26 @@ class ProjectList extends React.Component {
 		}
 	};
 	
-	handleCategory = (e) => {
+	handleCategory = e => {
 		this.setState({category: e.target.value});
 		this.getProjects();
+	};
+	
+	handleSearch = e => {
+		this.setState({text: e.target.value});
+	};
+	
+	searchProject = () => {
+		console.log("ok")
+		axios.post('/api/v1/projects/search', {
+			limit: this.state.limit,
+			category: this.state.category,
+			search: this.state.text
+		}).then(data => {
+			console.log(data.data.data)
+			this.setState({response: data.data.response, projectsSearch: data.data.data, search: true});
+			console.log(this.state);
+		});
 	};
 	
 	getProjects = () => {
@@ -94,7 +116,7 @@ class ProjectList extends React.Component {
 			}
 			<br/><br/>
 			{
-				this.state.projectsTopOne.length > 0
+				this.state.projectsTopOne.length > 0 && this.state.search === false
 					? <div className="panelContent center">
 						<br/>
 						<br/>
@@ -130,23 +152,50 @@ class ProjectList extends React.Component {
 					<option value="other">Другое</option>
 				</select>
 			</div>
+			<div className="panelContent center">
+				<form className="border">
+					<input type="text" placeholder="Ключевое слово, заголовок и так далее..."
+					       onChange={this.handleSearch}/>
+					<button onClick={this.searchProject} type="button">Поиск</button>
+				</form>
+			</div>
 			{
 				this.state.response === "LOADING"
 					? <p>Загрузка...</p>
 					: null
 			}
 			{
-				this.state.response === "NOT_PROJECTS"
+				this.state.response === "NOT_PROJECTS" && this.state.search === false
 					? <p>Проекты отсутсвуют</p>
 					: null
 			}
 			{
-				this.state.projects.length > 0
+				this.state.response === "NOT_PROJECTS" && this.state.search === true
+					? <p>Проекты отсутсвуют</p>
+					: null
+			}
+			{
+				this.state.response === "PROJECTS_FOUND" && this.state.search === false
 					? <div className="panelContent center">
 						<br/>
 						<br/>
 						{
 							this.state.projects.map(news => {
+								return <PanelContent active={this.state.user.active} _id={news._id}
+								                     title={`Проект #${news.id} - ${news.title}`} desc={news.desc}
+								                     img={news.img} type="projects/get"/>
+							})
+						}
+					</div>
+					: null
+			}
+			{
+				this.state.projectsSearch.length > 0 && this.state.search === true
+					? <div className="panelContent center">
+						<br/>
+						<br/>
+						{
+							this.state.projectsSearch.map(news => {
 								return <PanelContent active={this.state.user.active} _id={news._id}
 								                     title={`Проект #${news.id} - ${news.title}`} desc={news.desc}
 								                     img={news.img} type="projects/get"/>

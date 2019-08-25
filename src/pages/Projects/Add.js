@@ -17,7 +17,8 @@ class ProjectAdd extends React.Component {
 			phone: "",
 			email: "",
 			img: "",
-			category: "invention"
+			category: "invention",
+			tags: ""
 		};
 		
 		this.getInfo = this.getInfo.bind(this);
@@ -28,6 +29,11 @@ class ProjectAdd extends React.Component {
 		this.handleTitle = this.handleTitle.bind(this);
 		this.handleText = this.handleText.bind(this);
 		this.handleDesc = this.handleDesc.bind(this);
+		this.handleCategory = this.handleCategory.bind(this);
+		this.handleTextPlus = this.handleTextPlus.bind(this);
+		this.handleEmail = this.handleEmail.bind(this);
+		this.handlePhone = this.handlePhone.bind(this);
+		this.handleTags = this.handleTags.bind(this);
 		
 		this.checkFields = this.checkFields.bind(this);
 		this.turnOffError = this.turnOffError.bind(this);
@@ -57,7 +63,7 @@ class ProjectAdd extends React.Component {
 					email: this.state.email,
 					token: cookie.load("token"),
 					category: this.state.category,
-					value: 1500
+					tags: this.state.tags
 				}).then((data) => {
 					this.setState({response: "LOADING"});
 					this.setState({response: data.data.response});
@@ -95,6 +101,11 @@ class ProjectAdd extends React.Component {
 	
 	handleTitle = (e) => {
 		this.setState({title: e.target.value});
+		this.turnOffError();
+	};
+	
+	handleTags = (e) => {
+		this.setState({tags: e.target.value});
 		this.turnOffError();
 	};
 	
@@ -201,6 +212,8 @@ class ProjectAdd extends React.Component {
 							<input type="text" name="phone" onChange={this.handlePhone}/>
 							<label>EMail</label>
 							<input type="email" onChange={this.handleEmail}/>
+							<label>Ключевые слова (через запятую)</label>
+							<input type="text" name="tags" onChange={this.handleTags}/>
 							<label>Фото (не обязательно)</label>
 							<input type="file" ref={ref => {
 								this.uploadFile = ref;

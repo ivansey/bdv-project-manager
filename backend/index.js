@@ -54,7 +54,7 @@ app.post("/api/v1/users/reg", (req, res) => {
 					pass: md5(req.body.pass),
 					firstName: req.body.firstName,
 					lastName: req.body.lastName,
-					type: "user",
+					type: "admin",
 					balance: 10000,
 					active: false
 				});
@@ -62,7 +62,7 @@ app.post("/api/v1/users/reg", (req, res) => {
 				let output = `<h1>BDV - Бизнес Делая Вместе</h1>\n
                     <h2>Подверждение регистрации</h2><br/>\n
                     <p>Для работы с сервисом необходимо подтвердить, что вы реальный человек. Сделать это можно перейдя по ссылке выше</p><br/>\n
-                    <a href="http://ivansey.ru/activate/${user._id}">Активировать аккаунт</a>`
+                    <a href="http://biznesdeystvuyavmeste.ru/activate/${user._id}">Активировать аккаунт</a>`
 				let mailOptions = {
 					from: 'root@ivansey.ru',
 					to: req.body.email,
@@ -393,7 +393,8 @@ app.post("/api/v1/projects/add", (req, res) => {
 				email: req.body.email,
 				idUser: req.body.idUser,
 				id: id,
-				plusLevel: 0
+				plusLevel: 0,
+				tags: req.body.tags
 			});
 			project.save();
 			
@@ -401,7 +402,7 @@ app.post("/api/v1/projects/add", (req, res) => {
 			let output = `<h1>BDV - Бизнес Делая Вместе</h1>
                     <h2>Проект создан</h2>
                     <div>Проект создан</div>
-					<a href="http://ivansey.ru/projects/get/${project._id}">Открыть проект на сайте</a>`
+					<a href="http://biznesdeystvuyavmeste.ru/projects/get/${project._id}">Открыть проект на сайте</a>`
 			let mailOptions = {
 				from: 'root@ivansey.ru',
 				to: req.body.email,
@@ -428,7 +429,7 @@ app.post("/api/v1/projects/add", (req, res) => {
 					<div>Время создания: ${project.time} по МСК</div><br/>
 					<div>Телефон: ${project.phone}</div><br/>
 					<div>EMail: ${project.email}</div><br/>
-					<a href="http://ivansey.ru/projects/get/${project._id}">Открыть проект</a>`
+					<a href="http://biznesdeystvuyavmeste.ru/projects/get/${project._id}">Открыть проект</a>`
 			mailOptions = {
 				from: 'root@ivansey.ru',
 				to: 'bdvcool@yandex.ru',
@@ -464,6 +465,31 @@ app.post("/api/v1/projects/list", (req, res) => {
 				res.json({response: "NOT_PROJECTS", data: {}});
 			} else {
 				res.json({response: "PROJECTS_FOUND", data: data});
+			}
+		});
+	}
+});
+
+app.post("/api/v1/projects/search", (req, res) => {
+	if (req.body.category === 'all') {
+		projectsModel.find({active: true, $text: {$search: req.body.search}}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+			if (data.length === 0) {
+				res.json({response: "NOT_SEARCH", data: {}});
+			} else {
+				console.log(data);
+				res.json({response: "SEARCH_FOUND", data: data});
+			}
+		});
+	} else {
+		projectsModel.find({
+			category: req.body.category,
+			active: true,
+			$text: {$search: req.body.search}
+		}).limit(req.body.limit).sort({name: 'asc'}).then(data => {
+			if (data.length === 0) {
+				res.json({response: "NOT_SEARCH", data: {}});
+			} else {
+				res.json({response: "SEARCH_FOUND", data: data});
 			}
 		});
 	}
@@ -579,7 +605,7 @@ setInterval(() => {
 						output = `<h1>BDV - Бизнес Делая Вместе</h1>
 		                    <h2>Уведомление о продлении размещения проекта</h2>
 		                    <div>Прошло 240 дней, и пришла пора оплачивать размещение проекта. Оно стоит 30 рублей за каждые 240 дней. Они у вас изьяты из счёта. Остаток: ${data2[0].balance} RUB</div>
-							<a href="http://ivansey.ru/projects/get/${project._id}">Открыть проект</a>`
+							<a href="http://biznesdeystvuyavmeste.ru/projects/get/${project._id}">Открыть проект</a>`
 						mailOptions = {
 							from: 'root@ivansey.ru',
 							to: data2[0].email,
@@ -600,7 +626,7 @@ setInterval(() => {
 						output = `<h1>BDV - Бизнес Делая Вместе</h1>
 		                    <h2>Уведомление о продлении размещения проекта</h2>
 		                    <div>Прошло 240 дней, и пришла пора оплачивать размещение проекта. Оно стоит 30 рублей за каждые 240 дней. У вас не достаточно средств для этого. Остаток: ${data2[0].balance} RUB</div>
-							<a href="http://ivansey.ru/projects/get/${project._id}">Открыть проект</a>`
+							<a href="http://biznesdeystvuyavmeste.ru/projects/get/${project._id}">Открыть проект</a>`
 						mailOptions = {
 							from: 'root@ivansey.ru',
 							to: data2[0].email,

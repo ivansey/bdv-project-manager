@@ -15,6 +15,15 @@ let projectsSchema = new mongoose.Schema({
 	idUser: String,
 	id: Number,
 	plusLevel: Number,
+	tags: String
+});
+
+projectsSchema.index({
+	title: "text",
+	text: "text",
+	desc: "text",
+	textPlus: "text",
+	tags: "text"
 });
 
 let projectsModel = mongoose.model("projects", projectsSchema);

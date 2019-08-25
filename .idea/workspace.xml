@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="" />
+    <list default="true" id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/models/projects.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/models/projects.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Projects/Add.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Projects/Add.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Projects/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Projects/Index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Projects/List.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Projects/List.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +124,7 @@
       <workItem from="1566664106375" duration="19000" />
       <workItem from="1566664210440" duration="2955000" />
       <workItem from="1566667507063" duration="18583000" />
-      <workItem from="1566764285015" duration="1631000" />
+      <workItem from="1566764285015" duration="8651000" />
     </task>
     <task id="LOCAL-00001" summary="Init repository">
       <created>1565988959541</created>
@@ -357,7 +364,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566765526732</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Update meta">
+      <created>1566766163565</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1566766163565</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

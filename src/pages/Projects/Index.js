@@ -154,6 +154,9 @@ class ProjectGet extends React.Component {
 									<br/><br/>
 									<p>Требование/Предложение: </p>
 									<div className="text">{this.state.project.textPlus}</div>
+									<br/>
+									<p>Ключевые слова</p>
+									<div className="text">{this.state.project.tags}</div>
 									<br/><br/>
 									{
 										this.state.user.type === "admin"

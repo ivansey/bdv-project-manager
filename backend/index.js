@@ -15,8 +15,8 @@ try {
 		port: 465,
 		secure: true,
 		auth: {
-			user: 'root@ivansey.ru',
-			pass: '20021212Qq'
+			user: 'root@biznesdeystvuyavmeste.ru',
+			pass: 'qwerty123456'
 		},
 		tls: {
 			ciphers: 'SSLv3'
@@ -64,7 +64,7 @@ app.post("/api/v1/users/reg", (req, res) => {
                     <p>Для работы с сервисом необходимо подтвердить, что вы реальный человек. Сделать это можно перейдя по ссылке выше</p><br/>\n
                     <a href="http://biznesdeystvuyavmeste.ru/activate/${user._id}">Активировать аккаунт</a>`
 				let mailOptions = {
-					from: 'root@ivansey.ru',
+					from: 'root@biznesdeystvuyavmeste.ru',
 					to: req.body.email,
 					subject: 'BDV - Подверждение регистрации',
 					text: 'BDV - Подверждение регистрации',
@@ -404,7 +404,7 @@ app.post("/api/v1/projects/add", (req, res) => {
                     <div>Проект создан</div>
 					<a href="http://biznesdeystvuyavmeste.ru/projects/get/${project._id}">Открыть проект на сайте</a>`
 			let mailOptions = {
-				from: 'root@ivansey.ru',
+				from: 'root@biznesdeystvuyavmeste.ru',
 				to: req.body.email,
 				subject: 'BDV - Проект создан',
 				text: 'BDV - Проект создан',
@@ -431,7 +431,7 @@ app.post("/api/v1/projects/add", (req, res) => {
 					<div>EMail: ${project.email}</div><br/>
 					<a href="http://biznesdeystvuyavmeste.ru/projects/get/${project._id}">Открыть проект</a>`
 			mailOptions = {
-				from: 'root@ivansey.ru',
+				from: 'root@biznesdeystvuyavmeste.ru',
 				to: 'bdvcool@yandex.ru',
 				subject: `BDV - Уведомление о новом проекте #${project.id}`,
 				text: `BDV - Уведомление о новом проекте #${project.id}`,
@@ -607,7 +607,7 @@ setInterval(() => {
 		                    <div>Прошло 240 дней, и пришла пора оплачивать размещение проекта. Оно стоит 30 рублей за каждые 240 дней. Они у вас изьяты из счёта. Остаток: ${data2[0].balance} RUB</div>
 							<a href="http://biznesdeystvuyavmeste.ru/projects/get/${project._id}">Открыть проект</a>`
 						mailOptions = {
-							from: 'root@ivansey.ru',
+							from: 'root@biznesdeystvuyavmeste.ru',
 							to: data2[0].email,
 							subject: `BDV - Уведомление о продлении размещения проекта #${project.id}`,
 							text: `BDV - Уведомление о продлении размещения проекта #${project.id}`,
@@ -628,7 +628,7 @@ setInterval(() => {
 		                    <div>Прошло 240 дней, и пришла пора оплачивать размещение проекта. Оно стоит 30 рублей за каждые 240 дней. У вас не достаточно средств для этого. Остаток: ${data2[0].balance} RUB</div>
 							<a href="http://biznesdeystvuyavmeste.ru/projects/get/${project._id}">Открыть проект</a>`
 						mailOptions = {
-							from: 'root@ivansey.ru',
+							from: 'root@biznesdeystvuyavmeste.ru',
 							to: data2[0].email,
 							subject: `BDV - Уведомление о продлении размещения проекта #${project.id}`,
 							text: `BDV - Уведомление о продлении размещения проекта #${project.id}`,

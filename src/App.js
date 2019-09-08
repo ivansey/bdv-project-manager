@@ -19,6 +19,7 @@ import CasesList from "./pages/Cart/List";
 import Activate from "./pages/Activate";
 import About from "./pages/About";
 import UserProjectList from "./pages/User/List";
+import Contacts from "./pages/Contacts";
 
 import './App.css';
 import 'slick-carousel/slick/slick.css';
@@ -70,6 +71,7 @@ let App = () => {
 				<Route path="/cases" component={CasesList}/>
 				<Route path="/activate/:id" component={Activate}/>
 				<Route path="/about" component={About}/>
+				<Route path="/contacts" component={Contacts}/>
 				<Route path="/user/cabinet" component={UserProjectList}/>
 			</div>
 			<Footer/>

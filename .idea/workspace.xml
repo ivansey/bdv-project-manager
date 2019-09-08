@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/Contacts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,7 +39,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/Projects" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
@@ -54,16 +55,16 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\public" />
-      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\backend" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\src\pages" />
       <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\src\pages\Projects" />
       <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\src\pages\User" />
       <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\backend\models" />
       <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\backend" />
-      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\src\img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\public" />
+      <recent name="C:\Users\Иван Панасюк\WebstormProjects\bdv\backend" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -120,7 +121,9 @@
       <workItem from="1566664106375" duration="19000" />
       <workItem from="1566664210440" duration="2955000" />
       <workItem from="1566667507063" duration="18583000" />
-      <workItem from="1566764285015" duration="9423000" />
+      <workItem from="1566764285015" duration="11428000" />
+      <workItem from="1567208755401" duration="1911000" />
+      <workItem from="1567929595242" duration="2271000" />
     </task>
     <task id="LOCAL-00001" summary="Init repository">
       <created>1565988959541</created>
@@ -374,7 +377,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566773861110</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Update EMail account">
+      <created>1566774451809</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1566774451809</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,6 +420,7 @@
     <MESSAGE value="Major update" />
     <MESSAGE value="Update meta" />
     <MESSAGE value="Add search" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add search" />
+    <MESSAGE value="Update EMail account" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update EMail account" />
   </component>
 </project>

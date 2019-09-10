@@ -159,6 +159,7 @@ class ProjectAdd extends React.Component {
 					? <p>Цена добавления: 300 RUB</p>
 					: <p>Цена добавления: 1500 RUB</p>
 			}
+			<p>Вы оплачиваете размещение проекта за первые 240 дней, далее цена размещения за 60 дней будет равна 60 RUB</p>
 			{
 				this.state.user.balance >= 1500 && this.state.user.balance !== undefined
 					? <p>У Вас на счету {this.state.user.balance}</p>

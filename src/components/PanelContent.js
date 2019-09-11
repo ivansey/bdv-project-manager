@@ -13,7 +13,7 @@ class PanelContent extends React.Component {
 			<h4 className="title">{this.props.title}</h4>
 			<p className="desc">{this.props.desc}</p>
 			{
-				!this.props.active && this.props.type === "projects/get"
+				this.props.active === false && this.props.type === "projects/get"
 					? <Popup trigger={<button>Читать далее...</button>} modal closeOnDocumentClick>
 						<div>Ваш аккаунт не активирован или вы не зарегистрированы.</div>
 						<div>

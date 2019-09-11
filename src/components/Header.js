@@ -7,7 +7,7 @@ class Header extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			response: "",
+			response: "LOADING",
 			user: {}
 		};
 		
@@ -21,7 +21,7 @@ class Header extends React.Component {
 		axios.post('/api/v1/users/get', {
 			idUser: this.state.idUser
 		}).then((data) => {
-			this.setState({user: data.data.data});
+			this.setState({user: data.data.data, response: "DONE"});
 		});
 	};
 	
@@ -40,19 +40,24 @@ class Header extends React.Component {
 		return <div className="header">
 			<div className="menu">
 				{
-					cookie.load('token') === null || cookie.load('token') === undefined
+					(cookie.load('token') === null || cookie.load('token') === undefined)
 						? <Link to="/login">Вход</Link>
 						: null
 				}
 				{
-					cookie.load('token') === null || cookie.load('token') === undefined
+					(cookie.load('token') === null || cookie.load('token') === undefined)
 						? <Link to="/reg">Регистрация</Link>
 						: null
 				}
 				{
-					cookie.load('token') !== null && cookie.load('token') !== undefined
+					cookie.load('token') !== null && cookie.load('token') !== undefined && this.state.response !== "LOADING"
 						? <Link
 							to={`/user/cabinet`}>{this.state.user.firstName + " " + this.state.user.lastName} {this.state.user.balance + " RUB"}</Link>
+						: null
+				}
+				{
+					this.state.response === "LOADING"
+						? <p>Загрузка...</p>
 						: null
 				}
 			</div>

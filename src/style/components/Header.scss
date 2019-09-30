@@ -1,90 +1,68 @@
 .header {
-	background: url("/backgroundHeader.jpg");
-	color: #fff;
+	color: #000;
 	width: 100%;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	flex-direction: row;
+	justify-content: space-between;
 	text-align: center;
-	background-size: cover;
-	background-position: center;
-	text-shadow: #000 2px 2px 2px;
+	background: #fff;
+	border-bottom: 1px solid #000;
+	height: max-content;
+	font-size: 2.3em;
+	position: fixed;
+	z-index: 20;
 
-	& .text {
-		margin-top: 100px;
-		margin-bottom: 120px;
-
-		& h1, h2 {
-			font-family: "Pacifico", cursive;
-			font-weight: normal;
-		}
+	& h1, h2 {
+		font-family: "Pacifico", cursive;
+		font-weight: normal;
 	}
 
-	& .menu {
-		width: 100%;
+	& .left, & .right {
 		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-
-		&.border {
-			border-bottom: 5px solid $accentColor;
-		}
-
-		&.red {
-			background: #f00;
-
-			& a:hover {
-				background: #f00;
-			}
-		}
-
-		& a {
-			text-decoration: none;
-			padding: 5px 10px;
-
-			&:hover {
-				background: $accentColor;
-				text-shadow: #000 0 0;
-			}
-
-			&.top {
-				animation: top 1s infinite ease-in-out;
-				text-shadow: #000 0 0;
-			}
-		}
 	}
 }
 
-@keyframes top {
-	from {
-		background: $accentColor;
-	}
-	50% {
-		background: $accentColorLight;
-	}
-	to {
-		background: $accentColor;
-	}
-}
+.menu {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	top: 2.3em;
+	position: fixed;
+	height: calc(100% - 2.3em);
+	width: 300px;
+	background: #fff;
+	border-right: 1px solid #000;
+	z-index: 10;
+	left: -300px;
 
-@keyframes topBorder {
-	from {
-		border-bottom: 5px solid $accentColor;
+
+	& .open {
+		left: 0;
 	}
-	50% {
-		border-bottom: 5px solid $accentColorLight;
+
+	& a {
+		text-decoration: none;
+		padding: 5px 10px;
+		color: #000;
+
+		&:hover {
+			background: $accentColor;
+			text-shadow: #000 0 0;
+		}
 	}
-	to {
-		border-bottom: 5px solid $accentColor;
+
+	& .user {
+		padding: 30px 10px 10px;
+		background: $accentColor;
+
+		& .mdi-account {
+			font-size: 3em;
+		}
 	}
 }
 
 @media (max-width: 800px) {
 	.header {
-		& .text {
-			//margin: 40px;
-			margin-top: 60px;
-			margin-bottom: 20px;
-		}
+
 	}
 }

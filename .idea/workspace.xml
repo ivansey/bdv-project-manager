@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/Contacts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/style/components/Header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/components/Header.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +129,15 @@
       <workItem from="1566667507063" duration="18583000" />
       <workItem from="1566764285015" duration="11428000" />
       <workItem from="1567208755401" duration="1911000" />
-      <workItem from="1567929595242" duration="2271000" />
+      <workItem from="1567929595242" duration="3063000" />
+      <workItem from="1567942934507" duration="9939000" />
+      <workItem from="1568290905704" duration="220000" />
+      <workItem from="1568308290121" duration="374000" />
+      <workItem from="1568577427293" duration="15000" />
+      <workItem from="1569334027711" duration="29000" />
+      <workItem from="1569334143932" duration="110000" />
+      <workItem from="1569334620045" duration="1195000" />
+      <workItem from="1569851271458" duration="7008000" />
     </task>
     <task id="LOCAL-00001" summary="Init repository">
       <created>1565988959541</created>
@@ -384,7 +398,49 @@
       <option name="project" value="LOCAL" />
       <updated>1566774451809</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Add Contacts">
+      <created>1567932716909</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1567932716909</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Change style">
+      <created>1568120640205</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1568120640205</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Add description">
+      <created>1568120981332</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1568120981332</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Add loading status in header">
+      <created>1568218909127</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1568218909127</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Fix bugs">
+      <created>1568228829251</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1568228829251</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Add company info in Footer">
+      <created>1568308505015</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1568308505015</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -415,12 +471,17 @@
     <MESSAGE value="Add popup window" />
     <MESSAGE value="Restyle Quote" />
     <MESSAGE value="Add About" />
-    <MESSAGE value="Fix bugs" />
     <MESSAGE value="Restyle" />
     <MESSAGE value="Major update" />
     <MESSAGE value="Update meta" />
     <MESSAGE value="Add search" />
     <MESSAGE value="Update EMail account" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update EMail account" />
+    <MESSAGE value="Add Contacts" />
+    <MESSAGE value="Change style" />
+    <MESSAGE value="Add description" />
+    <MESSAGE value="Add loading status in header" />
+    <MESSAGE value="Fix bugs" />
+    <MESSAGE value="Add company info in Footer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add company info in Footer" />
   </component>
 </project>

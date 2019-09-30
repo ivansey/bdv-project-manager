@@ -51,6 +51,7 @@ class Login extends React.Component {
 			this.setState({empty: true});
 			return false;
 		}
+		
 		return true;
 	};
 	

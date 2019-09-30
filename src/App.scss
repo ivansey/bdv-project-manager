@@ -66,6 +66,10 @@ select {
 	border-radius: 10px;
 }
 
+.content {
+	padding-top: 2.3em;
+}
+
 @import 'style/components/Header';
 @import 'style/components/Quote';
 @import 'style/components/Form';

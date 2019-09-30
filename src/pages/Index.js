@@ -107,6 +107,7 @@ class Index extends React.Component {
 					? <button onClick={this.addLimit}>Ещё новости</button>
 					: null
 			}
+			
 		</div>
 	}
 }

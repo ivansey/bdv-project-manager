@@ -20,6 +20,30 @@
 	& .left, & .right {
 		display: flex;
 	}
+
+	& .left {
+		width: 100%;
+	}
+
+	& .search {
+		width: 100%;
+	}
+}
+
+.headerOld {
+	background: url("/backgroundHeader.jpg") center;
+	padding-top: calc(2.3em - 20px);
+	color: #fff;
+	padding-bottom: 20px;
+
+	& .title {
+		margin-top: 25px;
+		margin-bottom: 10px;
+	}
+
+	& .subtitle {
+		margin-bottom: 25px;
+	}
 }
 
 .menu {
@@ -36,7 +60,7 @@
 	left: -300px;
 
 
-	& .open {
+	&.open {
 		left: 0;
 	}
 

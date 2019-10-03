@@ -87,6 +87,26 @@ select {
 .header .left, .header .right {
   display: flex;
 }
+.header .left {
+  width: 100%;
+}
+.header .search {
+  width: 100%;
+}
+
+.headerOld {
+  background: url("/backgroundHeader.jpg") center;
+  padding-top: calc(2.3em - 20px);
+  color: #fff;
+  padding-bottom: 20px;
+}
+.headerOld .title {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+.headerOld .subtitle {
+  margin-bottom: 25px;
+}
 
 .menu {
   display: flex;
@@ -101,7 +121,7 @@ select {
   z-index: 10;
   left: -300px;
 }
-.menu .open {
+.menu.open {
   left: 0;
 }
 .menu a {

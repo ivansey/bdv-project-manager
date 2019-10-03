@@ -48,6 +48,7 @@ let App = () => {
 				<Route path="/news/add" exact component={NewsAdd}/>
 				<Route path="/news/:id" component={NewsIndex}/>
 				<Route path="/projects" exact component={ProjectList}/>
+				<Route path="/projects/:search" component={ProjectList}/>
 				<Route path="/projects/add" exact component={ProjectAdd}/>
 				<Route path="/projects/get/:id" component={ProjectGet}/>
 				<Route path="/projects/edit/:id" component={ProjectEdit}/>

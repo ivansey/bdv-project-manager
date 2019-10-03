@@ -34,6 +34,12 @@ class ProjectList extends React.Component {
 		this.checkToken();
 		this.getProjects();
 		this.getProjectsTopOne();
+		
+		if (this.props.match.params.search !== undefined && this.props.match.params.search !== null) {
+			this.state.search = true;
+			this.state.text = this.props.match.params.search;
+			this.searchProject();
+		}
 	}
 	
 	getInfo = () => {
@@ -65,13 +71,13 @@ class ProjectList extends React.Component {
 	};
 	
 	searchProject = () => {
-		console.log("ok")
+		console.log("ok");
 		axios.post('/api/v1/projects/search', {
 			limit: this.state.limit,
 			category: this.state.category,
 			search: this.state.text
 		}).then(data => {
-			console.log(data.data.data)
+			console.log(data.data.data);
 			this.setState({response: data.data.response, projectsSearch: data.data.data, search: true});
 			console.log(this.state);
 		});
@@ -155,7 +161,7 @@ class ProjectList extends React.Component {
 			<div className="panelContent center">
 				<form className="border">
 					<input type="text" placeholder="Ключевое слово, заголовок и так далее..."
-					       onChange={this.handleSearch}/>
+					       onChange={this.handleSearch} defaultValue={this.props.match.params.search}/>
 					<button onClick={this.searchProject} type="button">Поиск</button>
 				</form>
 			</div>

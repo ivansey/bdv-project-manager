@@ -9,12 +9,16 @@ class Header extends React.Component {
 		this.state = {
 			response: "LOADING",
 			user: {},
-			openMenu: false
+			openMenu: false,
+			openSearchBar: false,
+			searchQuery: ""
 		};
 		
 		this.checkToken = this.checkToken.bind(this);
 		this.getInfo = this.getInfo.bind(this);
 		this.changeStatusMenu = this.changeStatusMenu.bind(this);
+		this.changeStatusSearchBar = this.changeStatusSearchBar.bind(this);
+		this.handleSearch = this.handleSearch.bind(this);
 		
 		this.checkToken();
 	}
@@ -41,11 +45,25 @@ class Header extends React.Component {
 	changeStatusMenu = () => {
 		if (this.state.openMenu === false) {
 			this.setState({openMenu: true});
-			console.log("open");
 		} else {
 			this.setState({openMenu: false});
-			console.log("close");
 		}
+	};
+	
+	changeStatusSearchBar = () => {
+		if (this.state.openSearchBar === false) {
+			this.setState({openSearchBar: true});
+		} else {
+			this.setState({openSearchBar: false});
+		}
+	};
+	
+	search = () => {
+		window.open("/projects/" + this.state.search);
+	};
+	
+	handleSearch = (e) => {
+		this.setState({search: e.target.value});
 	};
 	
 	// render() {
@@ -96,27 +114,61 @@ class Header extends React.Component {
 			<div className="header">
 				<div className="left">
 					<span className="mdi mdi-menu" onClick={this.changeStatusMenu}/>
-					<p className="title">BDV</p>
+					{
+						this.state.openSearchBar === false
+							? <p className="title">BDV</p>
+							: <input type="text" className="search" onChange={this.handleSearch}/>
+					}
 				</div>
 				<div className="right">
-					<span className="mdi mdi-magnify"/>
+					{
+						this.state.openSearchBar === false
+							? <span className="mdi mdi-magnify" onClick={this.changeStatusSearchBar}/>
+							: <span className="mdi mdi-close" onClick={this.changeStatusSearchBar}/>
+					}
+					{
+						this.state.openSearchBar === true
+							? <span className="mdi mdi-magnify" onClick={this.search}/>
+							: null
+					}
 				</div>
 			</div>
 			<div className={this.state.openMenu === false ? "menu" : "menu open"}>
 				<div className="user">
 					<span className="mdi mdi-account"/>
-					<p>User Name</p>
-					<p>Balance</p>
+					{
+						(cookie.load('token') === null || cookie.load('token') === undefined)
+							? <p><Link to="/login">Вход</Link></p>
+							: null
+					}
+					{
+						(cookie.load('token') === null || cookie.load('token') === undefined)
+							? <p><Link to="/reg">Регистрация</Link></p>
+							: null
+					}
+					{
+						cookie.load('token') !== null && cookie.load('token') !== undefined && this.state.response !== "LOADING"
+							? <p><Link
+								to={`/user/cabinet`}>{this.state.user.firstName + " " + this.state.user.lastName} {this.state.user.balance + " RUB"}</Link>
+							</p>
+							: null
+					}
 				</div>
-				<Link>Главная</Link>
-				<Link>Проекты</Link>
+				<Link to="/">Главная</Link>
+				<Link to="/projects">Проекты</Link>
 				{
 					cookie.load('token') !== null && cookie.load('token') !== undefined
 						? <Link to="/cases">Кейсы</Link>
 						: null
 				}
-				<Link>О нас</Link>
-				<Link>Контакты</Link>
+				<Link to="/about">О нас</Link>
+				<Link to="/contacts">Контакты</Link>
+			</div>
+			<div className="headerOld">
+				<div className="text">
+					<h1 className="title">BDV</h1>
+					<h2 className="subtitle">Бизнес Действуя Вместе</h2>
+				</div>
 			</div>
 		</div>
 	}

@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="A">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Projects/List.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Projects/List.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/style/components/Header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/components/Header.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -135,7 +131,7 @@
       <workItem from="1569334143932" duration="110000" />
       <workItem from="1569334620045" duration="1195000" />
       <workItem from="1569851271458" duration="11425000" />
-      <workItem from="1570134173144" duration="2712000" />
+      <workItem from="1570134173144" duration="3527000" />
     </task>
     <task id="LOCAL-00001" summary="Init repository">
       <created>1565988959541</created>
@@ -445,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569868332680</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Add search bar">
+      <created>1570136982616</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1570136982616</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,6 +491,7 @@
     <MESSAGE value="Fix bugs" />
     <MESSAGE value="Add company info in Footer" />
     <MESSAGE value="Change header" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change header" />
+    <MESSAGE value="Add search bar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add search bar" />
   </component>
 </project>

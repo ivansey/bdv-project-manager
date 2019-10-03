@@ -96,9 +96,11 @@ select {
 
 .headerOld {
   background: url("/backgroundHeader.jpg") center;
-  padding-top: calc(2.3em - 20px);
+  background-size: cover;
+  padding-top: calc(2.3em + 40px);
   color: #fff;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
+  text-align: center;
 }
 .headerOld .title {
   margin-top: 25px;

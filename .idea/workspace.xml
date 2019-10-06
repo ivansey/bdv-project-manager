@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6d424854-ce97-4062-b8fc-4f85db74ae8f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/style/components/Header.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/components/Header.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User/AddBalance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -131,7 +137,9 @@
       <workItem from="1569334143932" duration="110000" />
       <workItem from="1569334620045" duration="1195000" />
       <workItem from="1569851271458" duration="11425000" />
-      <workItem from="1570134173144" duration="3527000" />
+      <workItem from="1570134173144" duration="3767000" />
+      <workItem from="1570222772453" duration="2334000" />
+      <workItem from="1570343108787" duration="10069000" />
     </task>
     <task id="LOCAL-00001" summary="Init repository">
       <created>1565988959541</created>
@@ -448,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570136982616</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Fix Old Header style">
+      <created>1570137944560</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1570137944560</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -492,6 +507,7 @@
     <MESSAGE value="Add company info in Footer" />
     <MESSAGE value="Change header" />
     <MESSAGE value="Add search bar" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add search bar" />
+    <MESSAGE value="Fix Old Header style" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Old Header style" />
   </component>
 </project>
